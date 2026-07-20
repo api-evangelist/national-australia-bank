@@ -1,0 +1,31 @@
+# National Australia Bank (NAB)
+
+> National Australia Bank (NAB) is one of Australia's "Big Four" banks and a mandated Consumer Data Right (CDR) data holder. It exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the DSB Consumer Data Standards (CDS) Banking API, alongside an accredited-only consumer data-sharing surface. Base URL: https://openbank.api.nab.com.au/cds-au/v1
+
+## APIs
+
+- [NAB CDR Product Reference Data API](https://developer.nab.com.au/docs/open-banking): Public GET /banking/products and /banking/products/{productId} returning NAB's banking product catalogue (home loans, deposits, credit cards, business products) with fees, rates, eligibility and terms.
+
+## Specs
+
+- [OpenAPI (CDS Banking)](openapi/national-australia-bank-cds-banking-products-openapi.yml): DSB Consumer Data Standards Banking API, 19 operations.
+- [Overlay](overlays/national-australia-bank-cds-banking-products-overlay.yaml): API Evangelist enhancements (production base URL, public-surface annotations).
+
+## Artifacts
+
+- [Authentication](authentication/national-australia-bank-authentication.yml): PRD is unauthenticated; consumer data uses the CDR Security Profile (FAPI 1.0 Advanced, OAuth2 + PAR/PKCE, OIDC, mTLS).
+- [Conventions](conventions/national-australia-bank-conventions.yml): pagination, x-v/x-min-v versioning, x-fapi-interaction-id tracing, CDS error envelope.
+- [Error codes](errors/national-australia-bank-error-codes.yml): CDS ResponseErrorListV2 error catalogue.
+- [Conformance](conformance/national-australia-bank-conformance.yml): CDS, CDR, FAPI, OAuth2, OIDC, mTLS.
+- [Lifecycle](lifecycle/national-australia-bank-lifecycle.yml): header-per-endpoint versioning, CDS obsolete-version deprecation.
+- [Data model](data-model/national-australia-bank-data-model.yml): product/account/transaction/payee entity graph.
+- [MCP (candidate)](mcp/national-australia-bank-mcp.yml): candidate tools derived from the OpenAPI operations.
+- [Agent skill](skills/national-australia-bank-browse-products.md): browse NAB banking products.
+
+## Docs
+
+- [Developer Portal](https://developer.nab.com.au/)
+- [Open Banking docs](https://developer.nab.com.au/docs/open-banking)
+- [Consumer Data Standards](https://consumerdatastandardsaustralia.github.io/standards/)
+- [Website](https://www.nab.com.au/)
+- [News / Blog](https://news.nab.com.au/)

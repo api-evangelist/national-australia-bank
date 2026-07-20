@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/national-australia-bank-cds-banking-products-openapi.yml
+# Cross-cutting request/response semantics for NAB's CDR Banking API, derived from
+# the DSB Consumer Data Standards OpenAPI. The public Product Reference Data (PRD)
+# surface is read-only and unauthenticated; the broader consumer data surface is
+# CDR-accredited-only. No idempotency contract exists (all operations are GET reads).
+authentication:
+  public_prd: none  # GET /banking/products and /banking/products/{productId} are unauthenticated
+  consumer_data: cdr-security-profile  # OAuth2 (authorization_code + PAR + PKCE) + OIDC + mTLS-bound tokens, accredited data recipients only
+  see: authentication/national-australia-bank-authentication.yml
+idempotency:
+  supported: false
+  reason: All operations are safe GET reads; no state-changing endpoints, so no idempotency key is defined.
+pagination:
+  style: page-number
+  request_params: [page, page-size]
+  defaults: {page: 1, page-size: 25}
+  response_fields:
+    links: [self, first, prev, next, last]
+    meta: [totalRecords, totalPages]
+versioning:
+  style: header-per-endpoint
+  request_headers: [x-v, x-min-v]  # x-v mandatory positive integer; x-min-v optional lower bound
+  response_headers: [x-v]
+  unsupported_behavior: 406 Not Acceptable when the requested version range is unsupported
+  see: lifecycle/national-australia-bank-lifecycle.yml
+request_tracing:
+  header: x-fapi-interaction-id
+  format: RFC 4122 UUID
+  behavior: If supplied the data holder echoes it in the response; otherwise the holder generates one and returns it.
+error_envelope:
+  field: errors
+  item_fields: [code, title, detail, meta]
+  format: cds-error-list  # NOT rfc9457 problem+json
+  see: errors/national-australia-bank-error-codes.yml
+rate_limiting:
+  documented: unknown  # CDR defines Traffic Thresholds / performance tiers at the ecosystem level; NAB does not publish per-endpoint limit headers in the spec
+content_type: application/json

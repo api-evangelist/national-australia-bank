@@ -51,6 +51,8 @@ apis:
     live returning HTTP 200 with an x-v response header and a data.products array
     (46 products, 10 pages) at https://openbank.api.nab.com.au/cds-au/v1/banking/products.
 common:
+- type: DomainSecurity
+  url: security/national-australia-bank-domain-security.yml
 - type: Website
   url: https://www.nab.com.au/
 - type: DeveloperPortal
@@ -63,6 +65,38 @@ common:
   url: https://news.nab.com.au/
 - type: PrivacyPolicy
   url: https://www.nab.com.au/common/privacy-policy
+- type: GettingStarted
+  url: https://developer.nab.com.au/docs/open-banking
+- type: Support
+  url: https://developer.nab.com.au/support
+- type: TermsOfService
+  url: https://www.nab.com.au/content/dam/nabrwd/documents/terms-and-conditions/services/nab-use-of-apis-developer-terms.pdf
+- type: Authentication
+  url: authentication/national-australia-bank-authentication.yml
+- type: OpenIDConnect
+  url: well-known/national-australia-bank-openid-configuration.json
+- type: OAuthScopes
+  url: scopes/national-australia-bank-scopes.yml
+- type: WellKnown
+  url: well-known/national-australia-bank-well-known.yml
+- type: Conventions
+  url: conventions/national-australia-bank-conventions.yml
+- type: ErrorCatalog
+  url: errors/national-australia-bank-error-codes.yml
+- type: Conformance
+  url: conformance/national-australia-bank-conformance.yml
+- type: Lifecycle
+  url: lifecycle/national-australia-bank-lifecycle.yml
+- type: DataModel
+  url: data-model/national-australia-bank-data-model.yml
+- type: MCPServer
+  url: mcp/national-australia-bank-mcp.yml
+- type: LLMsTxt
+  url: llms/national-australia-bank-llms.txt
+- type: AgentSkill
+  url: skills/national-australia-bank-browse-products.md
+- type: Overlay
+  url: overlays/national-australia-bank-cds-banking-products-overlay.yaml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

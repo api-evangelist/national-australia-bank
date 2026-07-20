@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/national-australia-bank-cds-banking-products-openapi.yml
+# Versioning derived from the CDS Banking OpenAPI. The Consumer Data Standards use
+# per-endpoint payload versioning negotiated by the x-v / x-min-v request headers,
+# NOT a single global API version. The spec's info.version (1.36.0) is the CDS
+# standards release, and each operation carries its own x-version (e.g. Get Products v5,
+# Get Product Detail v7).
+versioning:
+  scheme: header-per-endpoint
+  request_headers: [x-v, x-min-v]
+  response_header: x-v
+  standards_release: '1.36.0'
+  operation_versions:
+    listBankingProducts: '5'
+    getBankingProductDetail: '7'
+  docs: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+deprecation:
+  policy: cds-obsolete-versions
+  note: >-
+    Superseded endpoint versions are marked Obsolete in the standards and linked from
+    each operation description (e.g. Get Products v1-v4 obsolete). Version retirement
+    is governed by the DSB Data Standards, not an individual bank deprecation header.
+  deprecated_operations: []
+sla:
+  note: CDR performance requirements (Non-functional Requirements / Traffic Thresholds) are set at the ecosystem level by the DSB, not published per-bank in this spec.
+status_page: null  # pending search of NAB service-status surface

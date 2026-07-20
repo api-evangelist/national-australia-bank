@@ -1,0 +1,57 @@
+generated: '2026-07-20'
+method: searched
+source: https://openbank.api.nab.com.au/.well-known/openid-configuration
+docs: https://consumerdatastandardsaustralia.github.io/standards/#authorisation-scopes
+# CDR authorisation scopes advertised by NAB's live OIDC discovery document.
+# These govern the accredited consumer-data-sharing surface; the public Product
+# Reference Data endpoints require no scope. acr: urn:cds.au:cdr:2.
+schemes:
+  - name: CDR OAuth2 / OIDC
+    source: https://openbank.api.nab.com.au/.well-known/openid-configuration
+    issuer: https://openbank.api.nab.com.au
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://openbank.api.nab.com.au/v1/idp/cdr/nab/authorise
+        tokenUrl: https://openbank-secure.api.nab.com.au/v1/idp/cdr/nab/token
+        pushed_authorization_request_endpoint: https://openbank-secure.api.nab.com.au/v1/idp/cdr/nab/par
+        require_pushed_authorization_requests: true
+        require_signed_request_object: true
+        code_challenge_methods: [S256]
+      - flow: clientCredentials
+        tokenUrl: https://openbank-secure.api.nab.com.au/v1/idp/cdr/nab/token
+      - flow: refreshToken
+        tokenUrl: https://openbank-secure.api.nab.com.au/v1/idp/cdr/nab/token
+scopes:
+  - scope: openid
+    description: OpenID Connect authentication (id_token issuance).
+    flows: [authorizationCode]
+  - scope: profile
+    description: Basic profile claims.
+    flows: [authorizationCode]
+  - scope: offline_access
+    description: Issue a refresh token for ongoing data sharing within the arrangement.
+    flows: [authorizationCode]
+  - scope: bank:accounts.basic:read
+    description: Read basic account data (account list and basic details).
+    flows: [authorizationCode]
+  - scope: bank:accounts.detail:read
+    description: Read detailed account data.
+    flows: [authorizationCode]
+  - scope: bank:transactions:read
+    description: Read account transactions.
+    flows: [authorizationCode]
+  - scope: bank:payees:read
+    description: Read saved payees.
+    flows: [authorizationCode]
+  - scope: bank:regular_payments:read
+    description: Read direct debits and scheduled/regular payments.
+    flows: [authorizationCode]
+  - scope: common:customer.basic:read
+    description: Read basic customer data.
+    flows: [authorizationCode]
+  - scope: common:customer.detail:read
+    description: Read detailed customer data.
+    flows: [authorizationCode]
+  - scope: cdr:registration
+    description: Dynamic Client Registration under the CDR Register.
+    flows: [clientCredentials]

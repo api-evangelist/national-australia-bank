@@ -1,0 +1,47 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/national-australia-bank-cds-banking-products-openapi.yml
+# Conformance derived from the OpenAPI (a DSB Consumer Data Standards Banking API)
+# and NAB's role as a CDR-mandated data holder. Where a standard is asserted its
+# evidence is a concrete artifact in the spec or the CDR regulatory framework.
+standards:
+  - id: cds-banking
+    name: Consumer Data Standards (CDS) — Banking
+    conforms: true
+    evidence: spec title "CDR Banking API" by Data Standards Body; cds-au/v1 base path; x-cds-type extensions on parameters
+  - id: consumer-data-right
+    name: Australia Consumer Data Right (CDR)
+    conforms: true
+    evidence: NAB is a mandated ADI data holder; public unauthenticated Product Reference Data endpoints exposed per CDR rules
+  - id: fapi
+    name: Financial-grade API (FAPI)
+    conforms: true
+    evidence: x-fapi-interaction-id correlation header defined in components.headers; CDR Security Profile is FAPI 1.0 Advanced based (consumer data surface)
+  - id: oauth2
+    name: OAuth 2.0
+    conforms: true
+    evidence: CDR authenticated data-sharing surface uses OAuth2 authorization-code (PAR + PKCE); not declared in the public PRD spec (PRD is unauthenticated)
+  - id: oidc
+    name: OpenID Connect
+    conforms: true
+    evidence: CDR identity layer uses OIDC via the CDR Register (consumer data surface); not in the public PRD spec
+  - id: mutual-tls
+    name: Mutual TLS (mTLS)
+    conforms: true
+    evidence: CDS servers[] declare MTLS/TLS variants (mtls.dh.example.com / tls.dh.example.com); sender-constrained tokens on the accredited surface
+  - id: rfc9457-problem-details
+    name: RFC 9457 Problem Details
+    conforms: false
+    evidence: errors use the CDS ResponseErrorListV2 envelope (errors[] with code/title/detail/meta), not application/problem+json
+  - id: pagination
+    name: Standard offset pagination
+    conforms: true
+    evidence: page / page-size query parameters with meta.totalRecords / totalPages in responses
+  - id: api-versioning
+    name: Header-based endpoint versioning
+    conforms: true
+    evidence: mandatory x-v request header and optional x-min-v per operation; 406 on unsupported version
+  - id: psd2
+    name: PSD2 (EU)
+    conforms: false
+    evidence: NAB operates under Australia's CDR regime, not the EU PSD2 directive

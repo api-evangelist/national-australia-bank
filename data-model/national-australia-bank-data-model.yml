@@ -1,0 +1,64 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/national-australia-bank-cds-banking-products-openapi.yml
+# Entity-relationship graph derived from the CDS Banking OpenAPI operations,
+# path parameters, and response schema $refs. Ids: productId (BankingProductId,
+# ASCIIString) and accountId (BankingAccountId) are the primary keys that link
+# the graph. The public PRD surface exposes only BankingProduct.
+entities:
+  - name: BankingProduct
+    id_field: productId
+    public: true
+    source_schema: ResponseBankingProductListV4 / ResponseBankingProductByIdV7
+    description: An openly offered banking product (home loan, deposit, credit card, business product, etc.) with fees, rates, eligibility and terms.
+  - name: BankingAccount
+    id_field: accountId
+    public: false
+    description: A consumer's account (accredited data-sharing surface).
+  - name: BankingBalance
+    id_field: accountId
+    public: false
+    description: Current/available balance for an account.
+  - name: BankingTransaction
+    id_field: transactionId
+    public: false
+    description: A transaction on an account.
+  - name: BankingDirectDebit
+    public: false
+    description: A direct debit authorisation on an account.
+  - name: BankingScheduledPayment
+    id_field: scheduledPaymentId
+    public: false
+    description: A scheduled payment configured on an account.
+  - name: BankingPayee
+    id_field: payeeId
+    public: false
+    description: A saved payee.
+  - name: BankingInstalmentPlan
+    public: false
+    description: A buy-now-pay-later / instalment plan associated with an account.
+relationships:
+  - from: BankingAccount
+    to: BankingBalance
+    kind: has_one
+    via: accountId
+  - from: BankingAccount
+    to: BankingTransaction
+    kind: has_many
+    via: accountId
+  - from: BankingAccount
+    to: BankingDirectDebit
+    kind: has_many
+    via: accountId
+  - from: BankingAccount
+    to: BankingScheduledPayment
+    kind: has_many
+    via: accountId
+  - from: BankingAccount
+    to: BankingInstalmentPlan
+    kind: has_many
+    via: accountId
+  - from: BankingScheduledPayment
+    to: BankingPayee
+    kind: belongs_to
+    via: payeeReference

@@ -1,0 +1,43 @@
+generated: '2026-07-20'
+method: searched
+source: https://openbank.api.nab.com.au/.well-known/openid-configuration
+# The captured OpenAPI declares NO components.securitySchemes: the public Product
+# Reference Data (PRD) endpoints are intentionally unauthenticated per CDR rules.
+# The broader CDS consumer-data-sharing surface is governed by NAB's live CDR
+# identity provider, whose OIDC discovery document (searched) confirms the profile
+# below: FAPI 1.0 Advanced, OAuth2 authorization_code with mandatory PAR + PKCE,
+# private_key_jwt client auth, mTLS-bound (certificate-constrained) access tokens.
+summary:
+  types: [none, oauth2, openIdConnect, mutualTLS]
+  api_key_in: []
+  oauth2_flows: [authorizationCode, clientCredentials, refreshToken]
+surfaces:
+  - name: Product Reference Data (public)
+    auth: none
+    note: GET /banking/products and /banking/products/{productId} require no credentials; only the x-v version header is mandatory.
+    operations: [listBankingProducts, getBankingProductDetail]
+  - name: Consumer data sharing (accredited)
+    auth: cdr-security-profile
+    docs: https://consumerdatastandardsaustralia.github.io/standards/#security-profile
+    oidc_discovery: https://openbank.api.nab.com.au/.well-known/openid-configuration
+    issuer: https://openbank.api.nab.com.au
+    endpoints:
+      authorization: https://openbank.api.nab.com.au/v1/idp/cdr/nab/authorise
+      token: https://openbank-secure.api.nab.com.au/v1/idp/cdr/nab/token
+      pushed_authorization_request: https://openbank-secure.api.nab.com.au/v1/idp/cdr/nab/par
+      registration: https://openbank-secure.api.nab.com.au/v1/idp/cdr/nab/register
+      jwks: https://openbank.api.nab.com.au/.well-known/keyset
+      cdr_arrangement_revocation: https://openbank-secure.api.nab.com.au/v1/idp/cdr/nab/arrangements/revoke
+    profile:
+      acr_values: [urn:cds.au:cdr:2]
+      grant_types: [authorization_code, refresh_token, client_credentials]
+      response_types: [code, code id_token]
+      token_endpoint_auth_methods: [private_key_jwt]
+      require_pushed_authorization_requests: true
+      require_signed_request_object: true
+      code_challenge_methods: [S256]
+      mtls_certificate_bound_access_tokens: true
+      id_token_signing_alg: [PS256]
+      request_object_signing_alg: [ES256, PS256]
+    scopes_ref: scopes/national-australia-bank-scopes.yml
+schemes: []  # none declared in the OpenAPI; profile above sourced from live OIDC discovery

@@ -1,0 +1,88 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/national-australia-bank-cds-banking-products-openapi.yml
+# No official NAB-hosted MCP server was found. This is a CANDIDATE tool list
+# derived one-per-operation from the CDS Banking OpenAPI. Only the two
+# product endpoints are public/unauthenticated; the rest require the CDR
+# accredited data-sharing security profile.
+server:
+  name: national-australia-bank
+  transport: http
+tools:
+  - name: list_banking_products
+    description: Get NAB's openly published banking product catalogue (public, unauthenticated).
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listBankingProducts
+    public: true
+  - name: get_banking_product_detail
+    description: Get detailed information on a single openly offered product by productId (public, unauthenticated).
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#getBankingProductDetail
+    public: true
+  - name: list_banking_accounts
+    description: Obtain a list of accounts.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listBankingAccounts
+    public: false
+  - name: get_banking_account_detail
+    description: Obtain detailed information on a single account.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#getBankingAccountDetail
+    public: false
+  - name: list_banking_balances_bulk
+    description: Obtain balances for multiple accounts.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listBankingBalancesBulk
+    public: false
+  - name: list_banking_balances_specific_accounts
+    description: Obtain balances for a specified list of accounts.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listBankingBalancesSpecificAccounts
+    public: false
+  - name: get_banking_balance
+    description: Obtain the balance for a single specified account.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#getBankingBalance
+    public: false
+  - name: list_banking_transactions
+    description: Obtain transactions for a specific account.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listBankingTransactions
+    public: false
+  - name: get_banking_transaction_detail
+    description: Obtain detailed information on a single transaction.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#getBankingTransactionDetail
+    public: false
+  - name: list_direct_debits
+    description: Obtain direct debit authorisations for a specific account.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listDirectDebits
+    public: false
+  - name: list_direct_debits_bulk
+    description: Obtain direct debit authorisations for multiple accounts.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listDirectDebitsBulk
+    public: false
+  - name: list_direct_debits_specific_accounts
+    description: Obtain direct debit authorisations for a specified list of accounts.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listDirectDebitsSpecificAccounts
+    public: false
+  - name: list_scheduled_payments
+    description: Obtain scheduled payments for a specific account.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listScheduledPayments
+    public: false
+  - name: list_scheduled_payments_bulk
+    description: Obtain scheduled payments for multiple accounts.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listScheduledPaymentsBulk
+    public: false
+  - name: list_scheduled_payments_specific_accounts
+    description: Obtain scheduled payments for a specified list of accounts.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listScheduledPaymentsSpecificAccounts
+    public: false
+  - name: list_instalment_plans
+    description: Obtain instalment plans for a specific account.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listInstalmentPlans
+    public: false
+  - name: list_instalment_plans_bulk
+    description: Obtain instalment plans for multiple accounts.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listInstalmentPlansBulk
+    public: false
+  - name: list_banking_payees
+    description: Obtain a list of payees.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listBankingPayees
+    public: false
+  - name: get_banking_payee_detail
+    description: Obtain detailed information on a single payee.
+    source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#getBankingPayeeDetail
+    public: false

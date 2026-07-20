@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: searched
+# Probed /.well-known/* across NAB's API + portal + website hosts.
+# Only openbank.api.nab.com.au serves a real OIDC discovery document (the NAB CDR
+# identity provider). developer.nab.com.au returns HTTP 200 for every /.well-known
+# path but the body is the developer-portal SPA (text/html <!doctype html>), i.e. a
+# catch-all fallback, NOT a real well-known document — recorded as not-present.
+hosts:
+  - host: https://openbank.api.nab.com.au
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: national-australia-bank-openid-configuration.json
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+      - path: /.well-known/security.txt
+        status: 403
+      - path: /.well-known/api-catalog
+        status: 403
+      - path: /.well-known/ai-plugin.json
+        status: 403
+  - host: https://developer.nab.com.au
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        note: SPA fallback (text/html), not a real security.txt
+      - path: /.well-known/openid-configuration
+        status: 200
+        note: SPA fallback (text/html), not a real OIDC document
+      - path: /.well-known/api-catalog
+        status: 200
+        note: SPA fallback (text/html), not a real api-catalog
+  - host: https://www.nab.com.au
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404

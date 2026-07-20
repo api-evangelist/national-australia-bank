@@ -1,0 +1,68 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/national-australia-bank-cds-banking-products-openapi.yml
+# NAB's CDR Banking API follows the DSB Consumer Data Standards (CDS) error model,
+# NOT RFC 9457 problem+json. Errors are returned in a ResponseErrorListV2 envelope:
+#   { "errors": [ { "code": "<urn>", "title": "...", "detail": "...", "meta": {...} } ] }
+# Codes below are the standardized CDS error identifiers referenced by the spec's
+# per-operation response descriptions (anchor slugs preserved verbatim from the spec).
+format: cds-error-list
+envelope:
+  field: errors
+  item_fields: [code, title, detail, meta]
+  schema_ref: '#/components/schemas/ResponseErrorListV2'
+  reference: https://consumerdatastandardsaustralia.github.io/standards/#error-codes
+errors:
+  - status: 400
+    slug: error-400-field-invalid
+    title: Invalid Field
+    urn: urn:au-cds:error:cds:field:invalid
+    remediation: Correct the malformed or out-of-range query/path field and retry.
+  - status: 400
+    slug: error-400-field-missing
+    title: Missing Required Field
+    urn: urn:au-cds:error:cds:field:missing
+    remediation: Supply the required field that was omitted from the request.
+  - status: 400
+    slug: error-400-header-missing
+    title: Missing Required Header
+    urn: urn:au-cds:error:cds:header:missing
+    remediation: Include the mandatory header (e.g. x-v) on the request.
+  - status: 400
+    slug: error-400-header-invalid-version
+    title: Invalid Version
+    urn: urn:au-cds:error:cds:header:invalid
+    remediation: Set x-v (and optional x-min-v) to a positive integer version supported by the endpoint.
+  - status: 400
+    slug: error-400-field-invalid-date-time
+    title: Invalid Date
+    urn: urn:au-cds:error:cds:field:invalid
+    remediation: Provide a valid DateTimeString for date/time query parameters (e.g. updated-since).
+  - status: 400
+    slug: error-400-field-invalid-page-size
+    title: Invalid Page Size
+    urn: urn:au-cds:error:cds:field:invalid
+    remediation: Provide a positive integer page-size within supported bounds.
+  - status: 404
+    slug: error-404-resource-unavailable
+    title: Unavailable Resource
+    urn: urn:au-cds:error:cds:resource:unavailable
+    remediation: The requested resource exists but is not currently available; retry later or contact support.
+  - status: 404
+    slug: error-404-resource-invalid
+    title: Invalid Resource
+    urn: urn:au-cds:error:cds:resource:invalid
+    remediation: The productId (or resource id) does not identify a valid resource; verify the id.
+  - status: 406
+    slug: error-406-header-unsupported-version
+    title: Unsupported Version
+    urn: urn:au-cds:error:cds:header:unsupported-version
+    remediation: The requested x-v/x-min-v version range is not supported; request a supported version.
+  - status: 422
+    slug: error-422-field-invalid-page
+    title: Invalid Page
+    urn: urn:au-cds:error:cds:field:invalid
+    remediation: The requested page number is out of range for the result set; request a valid page.
+operations_covered:
+  - openapi/national-australia-bank-cds-banking-products-openapi.yml#listBankingProducts
+  - openapi/national-australia-bank-cds-banking-products-openapi.yml#getBankingProductDetail
