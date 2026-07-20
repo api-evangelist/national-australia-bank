@@ -1,0 +1,68 @@
+aid: national-australia-bank
+url: https://raw.githubusercontent.com/api-evangelist/national-australia-bank/refs/heads/main/apis.yml
+name: National Australia Bank
+kind: company
+description: National Australia Bank (NAB) is one of Australia's "Big Four" banks and
+  a major Authorised Deposit-taking Institution (ADI), headquartered in Melbourne
+  and publicly listed on the Australian Securities Exchange (ASX:NAB) - a shareholder-owned
+  institution rather than a customer-owned mutual. NAB serves retail, business,
+  corporate, and institutional customers across Australia and New Zealand. As a
+  regulated ADI, NAB is a mandated data holder under Australia's Consumer Data Right
+  (CDR / Open Banking) and exposes a public, unauthenticated Product Reference Data
+  (PRD) API conforming to the DSB Consumer Data Standards (CDS), alongside its
+  accredited-only consumer data sharing surface and a public developer portal.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Financial
+- Banks
+- Open Banking
+- CDR
+- Consumer Banking
+- Australia
+- Product Reference Data
+- ADI
+created: '2026-07-20'
+modified: '2026-07-20'
+specificationVersion: '0.19'
+apis:
+- aid: national-australia-bank:national-australia-bank-cdr-product-reference-data-api
+  name: National Australia Bank (NAB) CDR Product Reference Data API
+  tags:
+  - CDR
+  - Open Banking
+  - Product Reference Data
+  - Banking
+  - Consumer Data Right
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.nab.com.au/docs/open-banking
+  baseURL: https://openbank.api.nab.com.au/cds-au/v1
+  properties:
+  - url: https://developer.nab.com.au/docs/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
+    type: APIReference
+  - url: openapi/national-australia-bank-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: NAB's public, unauthenticated Consumer Data Right (CDR) Product
+    Reference Data API. GET /banking/products (and /banking/products/{productId})
+    returns NAB's openly published banking product catalogue - home loans, deposits,
+    credit cards, business products and more - with fees, rates, eligibility and
+    terms. Conforms to the DSB Consumer Data Standards (CDS) Banking API. Confirmed
+    live returning HTTP 200 with an x-v response header and a data.products array
+    (46 products, 10 pages) at https://openbank.api.nab.com.au/cds-au/v1/banking/products.
+common:
+- type: Website
+  url: https://www.nab.com.au/
+- type: DeveloperPortal
+  url: https://developer.nab.com.au/
+- type: Documentation
+  url: https://developer.nab.com.au/docs/open-banking
+- type: LinkedIn
+  url: https://www.linkedin.com/company/national-australia-bank
+- type: Blog
+  url: https://news.nab.com.au/
+- type: PrivacyPolicy
+  url: https://www.nab.com.au/common/privacy-policy
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

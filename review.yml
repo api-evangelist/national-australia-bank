@@ -1,0 +1,89 @@
+aid: national-australia-bank
+name: National Australia Bank
+review:
+  question: Does National Australia Bank (NAB) expose a confirmed, live public API surface under Australia's Consumer Data Right?
+  answer: true
+  date: '2026-07-20'
+  reviewer: API Evangelist
+  cdrPrdConfirmed: true
+  specProvenance: DSB-CDS-standard
+  specProvenanceNote: |
+    The harvested OpenAPI (openapi/national-australia-bank-cds-banking-products-openapi.yml)
+    is the shared Data Standards Body (DSB) Consumer Data Standards "CDR Banking API"
+    contract (openapi 3.0.3, info.title "CDR Banking API", version 1.36.0, MIT license,
+    contact contact@dsb.gov.au), NOT a NAB-proprietary specification. Every accredited
+    Australian banking data holder implements this same standard contract; NAB's PRD
+    endpoint conforms to it. It is captured here to describe the exact request/response
+    shape NAB's public products endpoint returns.
+findings:
+  summary: |
+    National Australia Bank (NAB) is a mandated Consumer Data Right (CDR) data
+    holder and exposes a genuine public, unauthenticated Product Reference Data
+    (PRD) API. The endpoint
+    https://openbank.api.nab.com.au/cds-au/v1/banking/products was confirmed live
+    on 2026-07-20 returning HTTP 200, an x-v response header (server negotiated
+    x-v: 4/5), and a data.products array (meta.totalRecords 46 across 10 pages).
+    A default request with no x-v header returns HTTP 406 UnsupportedVersion
+    (server requires minimum version 4, maximum 5) - correct CDS versioning
+    behaviour. This PRD surface is unauthenticated and requires no accreditation.
+    NAB's broader CDR consumer data sharing surface (accounts, balances,
+    transactions, direct debits, payees, etc. - also defined in the same CDS
+    Banking spec) is NOT public: it is gated behind the CDR Accredited Data
+    Recipient (ADR) model using OAuth2 / OpenID Connect with FAPI security
+    profile, mutual TLS and consumer consent. NAB also runs a public developer
+    portal at https://developer.nab.com.au/ with open-banking documentation.
+    Note: the earlier-guessed host https://api.nab.com.au/cds-au/v1/banking/products
+    returns HTTP 403 (Invalid Application) and is NOT the correct public PRD host;
+    the confirmed public host is openbank.api.nab.com.au.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://openbank.api.nab.com.au/cds-au/v1
+      documented: true
+      authenticated: false
+      note: Public CDR Product Reference Data. GET /banking/products confirmed HTTP 200 with x-v header.
+    - protocol: REST
+      scheme: https
+      baseURL: https://openbank.api.nab.com.au/cds-au/v1
+      documented: true
+      authenticated: true
+      note: CDR consumer data endpoints (accounts/transactions/etc.) gated by OAuth2/OIDC FAPI + mTLS under the ADR accreditation model. Not public.
+  endpointsConfirmedPublic:
+    - GET https://openbank.api.nab.com.au/cds-au/v1/banking/products
+    - GET https://openbank.api.nab.com.au/cds-au/v1/banking/products/{productId}
+  probeResults:
+    - url: https://openbank.api.nab.com.au/cds-au/v1/banking/products
+      httpStatus: 200
+      note: With x-v request header 4. Response x-v 4, x-fapi-interaction-id present, data.products array, meta.totalRecords 46, meta.totalPages 10.
+    - url: https://openbank.api.nab.com.au/cds-au/v1/banking/products
+      httpStatus: 406
+      note: With unsupported x-v request header 3. Error urn:au-cds:error:cds-all:Header/UnsupportedVersion - minimum supported 4, maximum 5.
+    - url: https://api.nab.com.au/cds-au/v1/banking/products
+      httpStatus: 403
+      note: API-440 Invalid Application. Not the public PRD host.
+    - url: https://developer.nab.com.au/
+      httpStatus: 200
+      note: Public NAB developer portal.
+    - url: https://developer.nab.com.au/docs/open-banking
+      httpStatus: 200
+      note: Open banking documentation.
+sources:
+  - url: https://openbank.api.nab.com.au/cds-au/v1/banking/products
+    type: APIReference
+    note: Confirmed live public CDR Product Reference Data endpoint (HTTP 200, x-v header, data.products).
+  - url: https://developer.nab.com.au/
+    type: DeveloperPortal
+    note: NAB developer portal (HTTP 200).
+  - url: https://developer.nab.com.au/docs/open-banking
+    type: Documentation
+    note: NAB open-banking documentation (HTTP 200).
+  - url: https://consumerdatastandardsaustralia.github.io/standards/
+    type: Documentation
+    note: DSB Consumer Data Standards - the shared CDS Banking contract NAB's PRD conforms to.
+  - url: https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/standards/master/docs/includes/swagger/cds_banking.yaml
+    type: OpenAPI
+    note: Source of the harvested DSB CDS Banking OpenAPI (verbatim), openapi 3.0.3 / CDR Banking API v1.36.0.
+actions:
+  openapiPath: openapi/national-australia-bank-cds-banking-products-openapi.yml
+  openapiProvenance: DSB Consumer Data Standards (shared CDS Banking API v1.36.0), not NAB-proprietary.
+  apisYmlUpdated: true
