@@ -1,0 +1,62 @@
+generated: '2026-07-21'
+method: searched
+source: https://nabgateway-developer.nab.com.au/hello-world/testing-guide.html
+# Sandbox for NAB's merchant-acquiring platform (the NAB Gateway / NAB Transact
+# developer portal, powered by CyberSource). This applies to the Gateway Payments API
+# entry, NOT the CDR Open Banking surface (CDR uses the DSB sandbox / accredited ADR
+# flow, not test cards). All values below are published verbatim by NAB; nothing is
+# invented. Test card numbers are shown with NAB's own placeholder notation where "X"
+# represents the digit zero.
+applies_to: national-australia-bank:national-australia-bank-gateway-payments-api
+separation:
+  model: separate-credentials
+  note: >-
+    "The sandbox simulates the live payment gateway. The sandbox never processes an
+    actual payment." It is "completely separate from the live production environment,
+    and it requires separate credentials." Using production credentials in the sandbox
+    (or vice versa) returns HTTP 401.
+  account: Create a sandbox account via the NAB Developer Portal (contact/registration link)
+docs:
+  testing_guide: https://nabgateway-developer.nab.com.au/hello-world/testing-guide.html
+  test_cards: https://nabgateway-developer.nab.com.au/docs/nab/en-us/payments/developer/ctv/rest/payments/payments-intro/payments-testing-services/payments-testing-cards.html
+card_notation: >-
+  "X" characters in the published test numbers represent the digit zero and should be
+  replaced with "0" when testing; remove spaces before submission.
+test_cards:
+  - brand: Visa
+    number: "4111 1111 1111 1111"
+  - brand: Mastercard
+    number: "5555 5555 5555 4444"
+  - brand: Mastercard
+    number: "2222 42XX XXXX 1113"
+  - brand: Mastercard
+    number: "2222 63XX XXXX 1125"
+  - brand: American Express
+    number: "3782 8224 631X XX5"
+  - brand: Discover
+    number: "6X11 1111 1111 1117"
+  - brand: JCB
+    number: "3566 1111 1111 1113"
+  - brand: Maestro (International)
+    number: "5X33 9619 89X9 17"
+  - brand: Maestro (International)
+    number: "5868 2416 0825 5333 38"
+  - brand: Maestro (UK Domestic)
+    number: "6759 4111 XXXX XXX8"
+  - brand: Maestro (UK Domestic)
+    number: "6759 56XX 45XX 5727 054"
+  - brand: Maestro (UK Domestic)
+    number: "5641 8211 1116 6669"
+cvv_expiry:
+  expiry: Use any expiration date after today's date if none is provided.
+  cvv: >-
+    If the card verification code is required and not provided, use any 3-digit
+    combination for Visa, Mastercard, Discover, Diners Club and JCB; any 4-digit
+    combination for American Express.
+response_triggers:
+  field: orderInformation.amountDetails.totalAmount
+  values:
+    - amount: "1"
+      result: AUTHORIZED
+    - amount: "-1"
+      result: INVALID_REQUEST (reason INVALID_DATA)

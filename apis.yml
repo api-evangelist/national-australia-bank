@@ -237,6 +237,12 @@ common:
   url: skills/national-australia-bank-browse-products.md
 - type: Overlay
   url: overlays/national-australia-bank-cds-banking-products-overlay.yaml
+- type: VulnerabilityDisclosure
+  url: security/national-australia-bank-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.nab.com.au/about-us/security
+- type: Sandbox
+  url: sandbox/national-australia-bank-sandbox.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
