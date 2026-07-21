@@ -22,7 +22,7 @@ tags:
 - Product Reference Data
 - ADI
 created: '2026-07-20'
-modified: '2026-07-20'
+modified: '2026-07-21'
 specificationVersion: '0.19'
 apis:
 - aid: national-australia-bank:national-australia-bank-cdr-product-reference-data-api
@@ -35,7 +35,7 @@ apis:
   - Consumer Data Right
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://developer.nab.com.au/docs/open-banking
-  baseURL: https://openbank.api.nab.com.au/cds-au/v1
+  baseURL: https://openbank.api.nab.com.au/cds-au/v1/banking/products
   properties:
   - url: https://developer.nab.com.au/docs/open-banking
     type: Documentation
@@ -48,8 +48,144 @@ apis:
     returns NAB's openly published banking product catalogue - home loans, deposits,
     credit cards, business products and more - with fees, rates, eligibility and
     terms. Conforms to the DSB Consumer Data Standards (CDS) Banking API. Confirmed
-    live returning HTTP 200 with an x-v response header and a data.products array
-    (46 products, 10 pages) at https://openbank.api.nab.com.au/cds-au/v1/banking/products.
+    live returning HTTP 200 (with x-v response header) at
+    https://openbank.api.nab.com.au/cds-au/v1/banking/products. This is the only
+    PUBLIC (unauthenticated) endpoint family in the CDR Banking surface; the
+    account/transaction/payment families below require a consumer-authorized CDR flow.
+- aid: national-australia-bank:national-australia-bank-cdr-accounts-balances-api
+  name: National Australia Bank (NAB) CDR Accounts & Balances API
+  tags:
+  - CDR
+  - Open Banking
+  - Accounts
+  - Balances
+  - Consumer Data Right
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.nab.com.au/docs/open-banking
+  baseURL: https://openbank.api.nab.com.au/cds-au/v1/banking/accounts
+  properties:
+  - url: https://developer.nab.com.au/docs/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
+    type: APIReference
+  - url: openapi/national-australia-bank-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: NAB's consumer-AUTHORIZED Consumer Data Right (CDR) Accounts and
+    Balances surface, part of the DSB Consumer Data Standards (CDS) Banking API that
+    NAB is legally mandated to implement as a data holder. Covers Get Accounts
+    (GET /banking/accounts), Get Account Detail (/banking/accounts/{accountId}),
+    Get Bulk Balances (/banking/accounts/balances) and Get Account Balance
+    (/banking/accounts/{accountId}/balance). Access is via the accredited CDR ADR
+    model - the consumer must authorize a data recipient; a bare request to
+    https://openbank.api.nab.com.au/cds-au/v1/banking/accounts returns HTTP 403
+    (unauthorized) as expected. Endpoint definitions harvested verbatim from the
+    shared DSB standard, not bank-proprietary.
+- aid: national-australia-bank:national-australia-bank-cdr-transactions-api
+  name: National Australia Bank (NAB) CDR Transactions API
+  tags:
+  - CDR
+  - Open Banking
+  - Transactions
+  - Banking
+  - Consumer Data Right
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.nab.com.au/docs/open-banking
+  baseURL: https://openbank.api.nab.com.au/cds-au/v1/banking/accounts
+  properties:
+  - url: https://developer.nab.com.au/docs/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
+    type: APIReference
+  - url: openapi/national-australia-bank-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: NAB's consumer-AUTHORIZED Consumer Data Right (CDR) Transactions
+    surface from the DSB Consumer Data Standards (CDS) Banking API. Covers Get
+    Transactions For Account (GET /banking/accounts/{accountId}/transactions) and
+    Get Transaction Detail (/banking/accounts/{accountId}/transactions/{transactionId}),
+    returning debits, credits, descriptions, amounts and status for an authorized
+    consumer's NAB accounts. Access requires a consumer-authorized CDR ADR flow
+    (accreditation with the ACCC); it is not a public endpoint. Endpoint definitions
+    harvested verbatim from the shared DSB standard, not bank-proprietary.
+- aid: national-australia-bank:national-australia-bank-cdr-direct-debits-scheduled-payments-api
+  name: National Australia Bank (NAB) CDR Direct Debits & Scheduled Payments API
+  tags:
+  - CDR
+  - Open Banking
+  - Direct Debits
+  - Scheduled Payments
+  - Consumer Data Right
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.nab.com.au/docs/open-banking
+  baseURL: https://openbank.api.nab.com.au/cds-au/v1/banking
+  properties:
+  - url: https://developer.nab.com.au/docs/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
+    type: APIReference
+  - url: openapi/national-australia-bank-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: NAB's consumer-AUTHORIZED Consumer Data Right (CDR) Direct Debits and
+    Scheduled Payments surface from the DSB Consumer Data Standards (CDS) Banking API.
+    Covers Get Direct Debits For Account (/banking/accounts/{accountId}/direct-debits),
+    Get Bulk Direct Debits (/banking/accounts/direct-debits), Get Scheduled Payments
+    For Account (/banking/accounts/{accountId}/payments/scheduled) and Get Bulk
+    Scheduled Payments (/banking/payments/scheduled). Access requires a
+    consumer-authorized CDR ADR flow; it is not a public endpoint. Endpoint
+    definitions harvested verbatim from the shared DSB standard, not bank-proprietary.
+- aid: national-australia-bank:national-australia-bank-cdr-payees-api
+  name: National Australia Bank (NAB) CDR Payees API
+  tags:
+  - CDR
+  - Open Banking
+  - Payees
+  - Banking
+  - Consumer Data Right
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.nab.com.au/docs/open-banking
+  baseURL: https://openbank.api.nab.com.au/cds-au/v1/banking/payees
+  properties:
+  - url: https://developer.nab.com.au/docs/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
+    type: APIReference
+  - url: openapi/national-australia-bank-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: NAB's consumer-AUTHORIZED Consumer Data Right (CDR) Payees surface
+    from the DSB Consumer Data Standards (CDS) Banking API. Covers Get Payees
+    (GET /banking/payees) and Get Payee Detail (/banking/payees/{payeeId}),
+    returning the saved payees (domestic, international, biller) an authorized
+    consumer has configured on their NAB accounts. Access requires a
+    consumer-authorized CDR ADR flow; it is not a public endpoint. Endpoint
+    definitions harvested verbatim from the shared DSB standard, not bank-proprietary.
+- aid: national-australia-bank:national-australia-bank-gateway-payments-api
+  name: National Australia Bank (NAB) Gateway Payments API
+  tags:
+  - Payments
+  - Merchant
+  - Tokenization
+  - Invoicing
+  - Reporting
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://nabgateway-developer.nab.com.au/
+  properties:
+  - url: https://nabgateway-developer.nab.com.au/
+    type: DeveloperPortal
+  - url: https://nabgateway-developer.nab.com.au/api-reference-assets/index.html
+    type: APIReference
+  - url: https://nabgateway-developer.nab.com.au/api/developer-guides.html
+    type: Documentation
+  - url: https://nabgateway-developer.nab.com.au/hello-world.html
+    type: GettingStarted
+  description: NAB's first-party merchant payments REST API platform (the NAB
+    Gateway / NAB Transact developer portal at nabgateway-developer.nab.com.au),
+    distinct from the CDR Open Banking surface. Documents a full merchant-acquiring
+    API set - Payments (online and card-present, incl. Google Pay and Apple Pay),
+    Token Management, Flex Microform (PCI-DSS scope reduction), Stored Credentials,
+    Invoicing, Reporting, Transaction Search, Transaction Details and Transaction
+    Batches - with field-level reference, code samples and a sandbox. Access is
+    merchant-registered and the OpenAPI/Swagger is not published for public download
+    (the reference renders in a client-side app), so this entry is documentation-only
+    with no harvested spec; humanURL points at the live developer portal (HTTP 200).
 common:
 - type: DomainSecurity
   url: security/national-australia-bank-domain-security.yml
@@ -57,8 +193,12 @@ common:
   url: https://www.nab.com.au/
 - type: DeveloperPortal
   url: https://developer.nab.com.au/
+- type: Portal
+  url: https://nabgateway-developer.nab.com.au/
 - type: Documentation
   url: https://developer.nab.com.au/docs/open-banking
+- type: APIReference
+  url: https://nabgateway-developer.nab.com.au/api-reference-assets/index.html
 - type: LinkedIn
   url: https://www.linkedin.com/company/national-australia-bank
 - type: Blog
