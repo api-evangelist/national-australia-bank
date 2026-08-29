@@ -239,6 +239,9 @@ apis:
   - type: APIReference
     url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
 common:
+- type: CapabilityMap
+  url: capabilities/national-australia-bank-capability-edges.yml
+  name: National Australia Bank Business Capability Map
 - type: DomainSecurity
   url: security/national-australia-bank-domain-security.yml
 - type: Website

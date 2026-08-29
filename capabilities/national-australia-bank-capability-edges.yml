@@ -1,0 +1,36 @@
+slug: national-australia-bank
+provider: National Australia Bank
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Banking Products
+  spec_file: national-australia-bank-banking-products-api-openapi.yml
+  capability_id: BC-1310.10
+  capability_id_l1: BC-1310
+  capability_name: Product Catalogue Management
+  confidence: 0.88
+  evidence: GET /banking/products listBankingProducts 'Get Products'; schemas BankingProductDetailV7,
+    BankingProductFeeV2, BankingProductLendingRateV3, BankingProductCategoryV2
+  reason: Publishes the bank's product catalogue with fees, rates, features and constraints — banking
+    product master/catalogue disclosure.
+- tag: Banking Account Scheduled Payments
+  spec_file: national-australia-bank-banking-account-scheduled-payments-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.7
+  evidence: GET /banking/accounts/{accountId}/payments/scheduled "Get Scheduled Payments for Account";
+    schemas BankingScheduledPaymentV2, BankingScheduledPaymentRecurrence, BankingDomesticPayee, BankingBillerPayee
+  reason: Scheduled/recurring payment instructions with payee and recurrence details (plus instalment
+    plans) exposed under CDR — payment instruction data. Read-only disclosure rather than authorisation,
+    so not top confidence.
