@@ -11,6 +11,18 @@ description: National Australia Bank (NAB) is one of Australia's "Big Four" bank
   (CDR / Open Banking) and exposes a public, unauthenticated Product Reference Data
   (PRD) API conforming to the DSB Consumer Data Standards (CDS), alongside its
   accredited-only consumer data sharing surface and a public developer portal.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
