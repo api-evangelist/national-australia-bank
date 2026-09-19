@@ -53,6 +53,12 @@ apis:
   name: National Australia Bank (NAB) Gateway Payments API
   tags:
   - Payments
+  - Merchants
+  - Tokenization
+  - Invoicing
+  - Reporting
+  tags_raw:
+  - Payments
   - Merchant
   - Tokenization
   - Invoicing
