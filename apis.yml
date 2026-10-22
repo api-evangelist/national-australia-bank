@@ -1,7 +1,11 @@
 aid: national-australia-bank
+
 url: https://raw.githubusercontent.com/api-evangelist/national-australia-bank/refs/heads/main/apis.yml
+
 name: National Australia Bank
+
 kind: company
+
 description: National Australia Bank (NAB) is one of Australia's "Big Four" banks and
   a major Authorised Deposit-taking Institution (ADI), headquartered in Melbourne
   and publicly listed on the Australian Securities Exchange (ASX:NAB) - a shareholder-owned
@@ -11,6 +15,7 @@ description: National Australia Bank (NAB) is one of Australia's "Big Four" bank
   (CDR / Open Banking) and exposes a public, unauthenticated Product Reference Data
   (PRD) API conforming to the DSB Consumer Data Standards (CDS), alongside its
   accredited-only consumer data sharing surface and a public developer portal.
+
 deliveryModel:
   model: saas
   open_source: false
@@ -23,6 +28,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -35,7 +41,9 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/national-australia-bank.png
+
 tags:
 - Finance
 - Banks
@@ -45,6 +53,7 @@ tags:
 - Australia
 - Product Reference Data
 - ADI
+
 tags_raw:
 - Financial
 - Banks
@@ -54,206 +63,48 @@ tags_raw:
 - Australia
 - Product Reference Data
 - ADI
+
 created: '2026-07-20'
-modified: '2026-10-06'
+
+modified: '2026-10-20'
+
 specificationVersion: '0.23'
-apis:
-- aid: national-australia-bank:national-australia-bank-gateway-payments-api
-  name: National Australia Bank (NAB) Gateway Payments API
-  tags:
-  - Payments
-  - Merchants
-  - Tokenization
-  - Invoicing
-  - Reporting
-  tags_raw:
-  - Payments
-  - Merchant
-  - Tokenization
-  - Invoicing
-  - Reporting
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://nabgateway-developer.nab.com.au/
-  properties:
-  - url: https://nabgateway-developer.nab.com.au/
-    type: DeveloperPortal
-  - url: https://nabgateway-developer.nab.com.au/api-reference-assets/index.html
-    type: APIReference
-  - url: https://nabgateway-developer.nab.com.au/api/developer-guides.html
-    type: Documentation
-  - url: https://nabgateway-developer.nab.com.au/hello-world.html
-    type: GettingStarted
-  description: >-
-    NAB's first-party merchant payments REST API platform (the NAB Gateway / NAB Transact developer portal
-    at nabgateway-developer.nab.com.au), distinct from the CDR Open Banking surface. Documents a full
-    merchant-acquiring API set - Payments (online and card-present, incl. Google Pay and Apple Pay), Token
-    Management, Flex Microform (PCI-DSS scope reduction), Stored Credentials, Invoicing, Reporting, Transaction
-    Search, Transaction Details and Transaction Batches - with field-level reference, code samples and
-    a sandbox. Access is merchant-registered and the OpenAPI/Swagger is not published for public download
-    (the reference renders in a client-side app), so this entry is documentation-only with no harvested
-    spec; humanURL points at the live developer portal (HTTP 200).
-- aid: national-australia-bank:national-australia-bank-banking-account-balances-api
-  name: National Australia Bank Banking Account Balances API
-  description: Banking Account Balance endpoints
-  humanURL: https://developer.nab.com.au/docs/open-banking
-  baseURL: https://openbank.api.nab.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Account Balances
-  properties:
-  - type: OpenAPI
-    url: openapi/national-australia-bank-banking-account-balances-api-openapi.yml
-  - type: Documentation
-    url: https://developer.nab.com.au/docs/open-banking
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
-  - type: APIReference
-    url: >-
-      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
-- aid: national-australia-bank:national-australia-bank-banking-account-direct-debits-api
-  name: National Australia Bank Banking Account Direct Debits API
-  description: Banking Account Direct Debit endpoints
-  humanURL: https://developer.nab.com.au/docs/open-banking
-  baseURL: https://openbank.api.nab.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Account Direct Debits
-  properties:
-  - type: OpenAPI
-    url: openapi/national-australia-bank-banking-account-direct-debits-api-openapi.yml
-  - type: Documentation
-    url: https://developer.nab.com.au/docs/open-banking
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
-  - type: APIReference
-    url: >-
-      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
-- aid: national-australia-bank:national-australia-bank-banking-account-scheduled-payments-api
-  name: National Australia Bank Banking Account Scheduled Payments API
-  description: Banking Account Scheduled Payment endpoints
-  humanURL: https://developer.nab.com.au/docs/open-banking
-  baseURL: https://openbank.api.nab.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Account Scheduled Payments
-  properties:
-  - type: OpenAPI
-    url: openapi/national-australia-bank-banking-account-scheduled-payments-api-openapi.yml
-  - type: Documentation
-    url: https://developer.nab.com.au/docs/open-banking
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
-  - type: APIReference
-    url: >-
-      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
-- aid: national-australia-bank:national-australia-bank-banking-account-transactions-api
-  name: National Australia Bank Banking Account Transactions API
-  description: Banking Account Transaction endpoints
-  humanURL: https://developer.nab.com.au/docs/open-banking
-  baseURL: https://openbank.api.nab.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Account Transactions
-  properties:
-  - type: OpenAPI
-    url: openapi/national-australia-bank-banking-account-transactions-api-openapi.yml
-  - type: Documentation
-    url: https://developer.nab.com.au/docs/open-banking
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
-  - type: APIReference
-    url: >-
-      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
-- aid: national-australia-bank:national-australia-bank-banking-accounts-api
-  name: National Australia Bank Banking Accounts API
-  description: Banking Account endpoints
-  humanURL: https://developer.nab.com.au/docs/open-banking
-  baseURL: https://openbank.api.nab.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Accounts
-  properties:
-  - type: OpenAPI
-    url: openapi/national-australia-bank-banking-accounts-api-openapi.yml
-  - type: Documentation
-    url: https://developer.nab.com.au/docs/open-banking
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
-  - type: APIReference
-    url: >-
-      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
-- aid: national-australia-bank:national-australia-bank-banking-payees-api
-  name: National Australia Bank Banking Payees API
-  description: Banking Payee endpoints
-  humanURL: https://developer.nab.com.au/docs/open-banking
-  baseURL: https://openbank.api.nab.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Payees
-  properties:
-  - type: OpenAPI
-    url: openapi/national-australia-bank-banking-payees-api-openapi.yml
-  - type: Documentation
-    url: https://developer.nab.com.au/docs/open-banking
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
-  - type: APIReference
-    url: >-
-      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
-- aid: national-australia-bank:national-australia-bank-banking-products-api
-  name: National Australia Bank Banking Products API
-  description: Banking Product endpoints
-  humanURL: https://developer.nab.com.au/docs/open-banking
-  baseURL: https://openbank.api.nab.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Products
-  properties:
-  - type: OpenAPI
-    url: openapi/national-australia-bank-banking-products-api-openapi.yml
-  - type: Documentation
-    url: https://developer.nab.com.au/docs/open-banking
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
-  - type: APIReference
-    url: >-
-      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
 common:
+- type: Plans
+  url: plans/national-australia-bank-plans-pricing.yml
+- type: Components
+  url: components/national-australia-bank-components.yml
+- type: Idempotency
+  url: conventions/national-australia-bank-conventions.yml
+- type: Deprecation
+  url: lifecycle/national-australia-bank-lifecycle.yml
+- type: DeclineCodes
+  url: errors/national-australia-bank-decline-codes.yml
+- type: ErrorCatalog
+  url: errors/national-australia-bank-problem-types.yml
+- type: Overlay
+  url: overlays/national-australia-bank-banking-account-balances-overlay.yaml
+- type: ToolCrosswalk
+  url: mcp/national-australia-bank-tool-crosswalk.yml
+- type: MCPServer
+  url: mcp/national-australia-bank-mcp.yml
+- type: Hosts
+  url: hosts/national-australia-bank-hosts.yml
+- type: IntegrationEdges
+  url: integrations/national-australia-bank-integration-edges.yml
+- type: Vendors
+  url: vendors/national-australia-bank-vendors.yml
+- type: Newsroom
+  url: https://www.nab.com.au/news
+- type: Login
+  url: https://ib.nab.com.au/login
+- type: Leadership
+  url: https://www.nab.com.au/about-us/nab-ventures/team
 - url: https://www.nab.com.au/news
   type: Blog
 - type: CapabilityMap
@@ -268,19 +119,28 @@ common:
 - type: Portal
   url: https://nabgateway-developer.nab.com.au/
 - type: Documentation
-  url: https://developer.nab.com.au/docs/open-banking
+  url: https://nabgateway-developer.nab.com.au/api/developer-guides.html
+- type: Documentation
+  url: https://www.nab.com.au/customer-notices/open-banking
+  name: NAB Open Banking (CDR) data sharing
 - type: APIReference
   url: https://nabgateway-developer.nab.com.au/api-reference-assets/index.html
 - type: LinkedIn
   url: https://www.linkedin.com/company/national-australia-bank
-- type: Blog
-  url: https://news.nab.com.au/
 - type: PrivacyPolicy
   url: https://www.nab.com.au/common/privacy-policy
 - type: GettingStarted
-  url: https://developer.nab.com.au/docs/open-banking
+  url: https://nabgateway-developer.nab.com.au/hello-world.html
 - type: Support
-  url: https://developer.nab.com.au/support
+  url: https://nabgateway-developer.nab.com.au/support/contact-us.html
+- type: FAQ
+  url: https://nabgateway-developer.nab.com.au/support/faqs.html
+- type: HelpCenter
+  url: https://www.nab.com.au/help-support
+- type: Contact
+  url: https://www.nab.com.au/contact-us
+- type: Careers
+  url: https://www.nab.com.au/about-us/careers
 - type: TermsOfService
   url: https://www.nab.com.au/content/dam/nabrwd/documents/terms-and-conditions/services/nab-use-of-apis-developer-terms.pdf
 - type: Authentication
@@ -308,14 +168,231 @@ common:
   url: llms/national-australia-bank-llms.txt
 - type: AgentSkill
   url: skills/national-australia-bank-browse-products.md
-- type: Overlay
-  url: overlays/national-australia-bank-cds-banking-products-overlay.yaml
 - type: VulnerabilityDisclosure
   url: security/national-australia-bank-vulnerability-disclosure.yml
 - type: Security
   url: https://www.nab.com.au/about-us/security
 - type: Sandbox
   url: sandbox/national-australia-bank-sandbox.yml
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+
+apis:
+- aid: national-australia-bank:national-australia-bank-gateway-payments-api
+  name: National Australia Bank (NAB) Gateway Payments API
+  tags:
+  - Payments
+  - Merchants
+  - Tokenization
+  - Invoicing
+  - Reporting
+  tags_raw:
+  - Payments
+  - Merchant
+  - Tokenization
+  - Invoicing
+  - Reporting
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://nabgateway-developer.nab.com.au/
+  baseURL: https://apitest.cybersource.com
+  properties:
+  - url: openapi/national-australia-bank-gateway-payments-api-openapi.yml
+    type: OpenAPI
+  - url: https://nabgateway-developer.nab.com.au/api-reference-assets/specs/cybs_merged.json
+    name: OpenAPI (provider-hosted)
+    type: OpenAPI
+  - url: https://nabgateway-developer.nab.com.au/
+    type: DeveloperPortal
+  - url: https://nabgateway-developer.nab.com.au/api-reference-assets/index.html
+    type: APIReference
+  - url: https://nabgateway-developer.nab.com.au/api/developer-guides.html
+    type: Documentation
+  - url: https://nabgateway-developer.nab.com.au/hello-world.html
+    type: GettingStarted
+  description: >-
+    NAB's first-party merchant payments REST API platform (the NAB Gateway / NAB Transact developer portal
+    at nabgateway-developer.nab.com.au), distinct from the CDR Open Banking surface. Documents a full
+    merchant-acquiring API set - Payments (online and card-present, incl. Google Pay and Apple Pay), Token
+    Management, Flex Microform (PCI-DSS scope reduction), Stored Credentials, Invoicing, Reporting, Transaction
+    Search, Transaction Details and Transaction Batches - with field-level reference, code samples and
+    a sandbox. Access is merchant-registered and the OpenAPI/Swagger is not published for public download
+    (the reference renders in a client-side app), so this entry is documentation-only with no harvested
+    spec; humanURL points at the live developer portal (HTTP 200).
+- aid: national-australia-bank:national-australia-bank-banking-account-balances-api
+  name: National Australia Bank Banking Account Balances API
+  description: Banking Account Balance endpoints
+  humanURL: https://www.nab.com.au/customer-notices/open-banking
+  tags:
+  - Banking Account Balances
+  properties:
+  - type: OpenAPI
+    url: openapi/national-australia-bank-banking-account-balances-api-openapi.yml
+  - type: Documentation
+    url: https://www.nab.com.au/customer-notices/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
+- aid: national-australia-bank:national-australia-bank-banking-account-direct-debits-api
+  name: National Australia Bank Banking Account Direct Debits API
+  description: Banking Account Direct Debit endpoints
+  humanURL: https://www.nab.com.au/customer-notices/open-banking
+  tags:
+  - Banking Account Direct Debits
+  properties:
+  - type: OpenAPI
+    url: openapi/national-australia-bank-banking-account-direct-debits-api-openapi.yml
+  - type: Documentation
+    url: https://www.nab.com.au/customer-notices/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
+- aid: national-australia-bank:national-australia-bank-banking-account-scheduled-payments-api
+  name: National Australia Bank Banking Account Scheduled Payments API
+  description: Banking Account Scheduled Payment endpoints
+  humanURL: https://www.nab.com.au/customer-notices/open-banking
+  tags:
+  - Banking Account Scheduled Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/national-australia-bank-banking-account-scheduled-payments-api-openapi.yml
+  - type: Documentation
+    url: https://www.nab.com.au/customer-notices/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
+- aid: national-australia-bank:national-australia-bank-banking-account-transactions-api
+  name: National Australia Bank Banking Account Transactions API
+  description: Banking Account Transaction endpoints
+  humanURL: https://www.nab.com.au/customer-notices/open-banking
+  tags:
+  - Banking Account Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/national-australia-bank-banking-account-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://www.nab.com.au/customer-notices/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
+- aid: national-australia-bank:national-australia-bank-banking-accounts-api
+  name: National Australia Bank Banking Accounts API
+  description: Banking Account endpoints
+  humanURL: https://www.nab.com.au/customer-notices/open-banking
+  tags:
+  - Banking Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/national-australia-bank-banking-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://www.nab.com.au/customer-notices/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
+- aid: national-australia-bank:national-australia-bank-banking-payees-api
+  name: National Australia Bank Banking Payees API
+  description: Banking Payee endpoints
+  humanURL: https://www.nab.com.au/customer-notices/open-banking
+  tags:
+  - Banking Payees
+  properties:
+  - type: OpenAPI
+    url: openapi/national-australia-bank-banking-payees-api-openapi.yml
+  - type: Documentation
+    url: https://www.nab.com.au/customer-notices/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
+- aid: national-australia-bank:national-australia-bank-banking-products-api
+  name: National Australia Bank Banking Products API
+  description: Banking Product endpoints
+  humanURL: https://www.nab.com.au/customer-notices/open-banking
+  baseURL: https://openbank.api.nab.com.au/cds-au/v1
+  tags:
+  - Banking Products
+  properties:
+  - type: OpenAPI
+    url: openapi/national-australia-bank-banking-products-api-openapi.yml
+  - type: Documentation
+    url: https://www.nab.com.au/customer-notices/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#get-payees
+
+x-coverage:
+  state: covered
+  reason: enriched
+  detail: 'Identity pass 2026-10-20: Website www.nab.com.au verified 200 (title names NAB). developer.nab.com.au is a JS SPA that renders "404 Route not found" for /docs/open-banking and /support (soft-404s), so those pointers were replaced with live NAB pages; the root renders a Use Cases page and is kept. news.nab.com.au redirects to www.nab.com.au/news and the duplicate Blog pointer was removed. github.com/nabgroup answered 200 but nothing tied it to NAB, so no GitHubOrganization pointer was added.'
+  evidence:
+  - {url: 'https://www.nab.com.au/', status: 200}
+  - {url: 'https://developer.nab.com.au/', status: 200}
+  - {url: 'https://developer.nab.com.au/docs/open-banking', status: 200, note: soft-404 rendered body}
+  - {url: 'https://developer.nab.com.au/support', status: 200, note: soft-404 rendered body}
+  - {url: 'https://www.nab.com.au/customer-notices/open-banking', status: 200}
+  - {url: 'https://nabgateway-developer.nab.com.au/api/developer-guides.html', status: 200}
+  - {url: 'https://nabgateway-developer.nab.com.au/hello-world.html', status: 200}
+  - {url: 'https://nabgateway-developer.nab.com.au/support/contact-us.html', status: 200}
+  - {url: 'https://nabgateway-developer.nab.com.au/support/faqs.html', status: 200}
+  - {url: 'https://www.nab.com.au/help-support', status: 200}
+  - {url: 'https://www.nab.com.au/contact-us', status: 200}
+  - {url: 'https://www.nab.com.au/about-us/careers', status: 200}
+  - {url: 'https://www.nab.com.au/content/dam/nabrwd/documents/terms-and-conditions/services/nab-use-of-apis-developer-terms.pdf', status: 200}
+x-enrichment:
+  date: '2026-10-20'
+  status: enriched
+  artifacts_added: 24
+  pass: modular-v1
+  engine: identity=anthropic,contract=anthropic,surfaces=anthropic,docs=anthropic,regulatory=anthropic

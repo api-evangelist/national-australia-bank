@@ -1,0 +1,21 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for NAB CDR banking-account-transactions API
+  version: 1.0.0
+extends: openapi/national-australia-bank-banking-account-transactions-api-openapi.yml
+generated: '2026-10-20'
+method: generated
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: National Australia Bank
+    x-apievangelist-regime: Australia Consumer Data Right (CDR) - DSB Consumer Data Standards Banking API
+    x-apievangelist-access: accredited data recipients only (CDR accreditation, consumer consent, FAPI/MTLS); NAB authenticated resource base URL not publicly documented
+- target: $.paths['/banking/accounts/{accountId}/transactions'].get
+  update:
+    x-apievangelist-public: false
+    x-apievangelist-read-only: true
+- target: $.paths['/banking/accounts/{accountId}/transactions/{transactionId}'].get
+  update:
+    x-apievangelist-public: false
+    x-apievangelist-read-only: true

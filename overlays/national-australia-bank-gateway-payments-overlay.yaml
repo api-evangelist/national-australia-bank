@@ -1,0 +1,44 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for NAB Gateway Payments API
+  version: 1.0.0
+extends: openapi/national-australia-bank-gateway-payments-api-openapi.yml
+generated: '2026-10-20'
+method: generated
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: National Australia Bank
+    x-apievangelist-platform: NAB Gateway - white-label of Cybersource (Visa Acceptance Solutions); spec served at https://nabgateway-developer.nab.com.au/api-reference-assets/specs/cybs_merged.json
+    x-apievangelist-servers-note: servers[] name Cybersource hosts (apitest.cybersource.com); NAB does not publish a NAB-branded production host in this spec.
+    x-apievangelist-agent-surface: Visa Acceptance local-stdio MCP (npx -y @visaacceptance/mcp) covers invoicing and pay-by-link operations; see mcp/national-australia-bank-tool-crosswalk.yml
+- target: $.paths['/invoicing/v2/invoices'].post
+  update:
+    x-mcp-tool: invoices.create
+- target: $.paths['/invoicing/v2/invoices'].get
+  update:
+    x-mcp-tool: invoices.list
+- target: $.paths['/invoicing/v2/invoices/{id}'].get
+  update:
+    x-mcp-tool: invoices.get
+- target: $.paths['/invoicing/v2/invoices/{id}'].put
+  update:
+    x-mcp-tool: invoices.update
+- target: $.paths['/invoicing/v2/invoices/{id}/delivery'].post
+  update:
+    x-mcp-tool: invoices.send
+- target: $.paths['/invoicing/v2/invoices/{id}/cancelation'].post
+  update:
+    x-mcp-tool: invoices.cancel
+- target: $.paths['/ipl/v2/payment-links'].post
+  update:
+    x-mcp-tool: paymentLinks.create
+- target: $.paths['/ipl/v2/payment-links'].get
+  update:
+    x-mcp-tool: paymentLinks.list
+- target: $.paths['/ipl/v2/payment-links/{id}'].get
+  update:
+    x-mcp-tool: paymentLinks.get
+- target: $.paths['/ipl/v2/payment-links/{id}'].patch
+  update:
+    x-mcp-tool: paymentLinks.update

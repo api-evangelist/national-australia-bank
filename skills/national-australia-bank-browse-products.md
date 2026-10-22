@@ -1,7 +1,7 @@
 ---
-name: Browse NAB banking products
+name: national-australia-bank-browse-products
 description: Retrieve and filter NAB's openly published banking product catalogue (home loans, deposits, credit cards, business products) and drill into a single product's fees, rates, eligibility and terms via the public CDR Product Reference Data API. No authentication required.
-api: openapi/national-australia-bank-cds-banking-products-openapi.yml
+api: openapi/national-australia-bank-banking-products-api-openapi.yml
 operations: [listBankingProducts, getBankingProductDetail]
 ---
 

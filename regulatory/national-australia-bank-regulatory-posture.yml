@@ -1,0 +1,82 @@
+generated: '2026-10-20'
+method: searched
+probe: true
+source:
+  - https://www.nab.com.au/common/privacy-policy
+  - https://www.nab.com.au/common/privacy-policy/overseas-countries
+  - https://www.nab.com.au/about-us/accessibility-inclusion/online-banking-features
+  - https://www.nab.com.au/content/dam/nabrwd/documents/terms-and-conditions/services/nab-use-of-apis-developer-terms.pdf
+notes: >-
+  Harvested from NAB's own privacy policy, overseas-countries page, accessibility page and
+  NAB Use of APIs developer terms (all HTTP 200 on 2026-10-20). Nothing was found for the
+  subprocessors, incident_notification, global_privacy_control, sbom, support_lifetime,
+  exit_assistance, transparency_report, age_assurance, notice_and_action or training_data_summary
+  signals, so they are left out.
+signals:
+  data_subject_request:
+    url: https://www.nab.com.au/common/privacy-policy
+    form: https://www.nab.com.au/content/dam/nabrwd/documents/forms/banking/personal-information-request-for-access.pdf
+    evidence:
+      - source: https://www.nab.com.au/common/privacy-policy
+        http_status: 200
+        fetched: '2026-10-20'
+        section: How do you access your personal information?
+        quote: "You can request access to personal information that we hold about you by filling out the Personal Information Access form"
+        note: Access requests go through a published PDF form (www.nab.com.au/privacy/access-form/ redirects to it with HTTP 200). There is no API.
+      - source: https://www.nab.com.au/common/privacy-policy
+        http_status: 200
+        fetched: '2026-10-20'
+        section: How do you correct your personal information?
+        quote: "Where we agree that the information needs to be corrected, we will update it."
+        note: Right to correction, decided at NAB's discretion and handled by contacting NAB.
+      - source: https://www.nab.com.au/common/privacy-policy
+        http_status: 200
+        fetched: '2026-10-20'
+        section: Attachment 1 (Credit Reporting Policy)
+        quote: "provide you with access to the information generally within 30 days (unless unusual circumstances apply); and"
+        note: Stated response period for credit-information access requests (verbatim).
+  data_retention:
+    url: https://www.nab.com.au/common/privacy-policy
+    evidence:
+      - source: https://www.nab.com.au/common/privacy-policy
+        http_status: 200
+        fetched: '2026-10-20'
+        section: What happens when we no longer need your information?
+        quote: "When we no longer require your information, we take reasonable steps to ensure that your information is destroyed, de-identified, or rendered inaccessible."
+        note: Retention is tied to purpose plus statutory periods (the policy names the Corporations Act and the AML/CTF Act). No fixed period is stated.
+  data_residency:
+    url: https://www.nab.com.au/common/privacy-policy/overseas-countries
+    regions: [nz, in, cn, jp, sg, id, vn, gb, fr, us, nl, ph, my, il, ca, ch, ie]
+    evidence:
+      - source: https://www.nab.com.au/common/privacy-policy
+        http_status: 200
+        fetched: '2026-10-20'
+        section: Sharing outside of Australia
+        quote: "We may store your information in cloud or other types of networked or electronic systems. If your information is stored in this way, disclosures may occur in countries other than those listed."
+        note: This is a cross-border disclosure statement, not a residency commitment. NAB says cloud storage may put data outside the listed countries.
+      - source: https://www.nab.com.au/common/privacy-policy/overseas-countries
+        http_status: 200
+        fetched: '2026-10-20'
+        section: Sharing information outside the NAB Group
+        quote: "Sometimes we may also need to share your information (including credit information) outside the NAB Group with organisations outside Australia."
+        note: The page lists the countries where NAB Group businesses operate and where third-party recipients may be located. The regions above combine both lists.
+  ai_transparency:
+    url: https://www.nab.com.au/common/privacy-policy
+    evidence:
+      - source: https://www.nab.com.au/common/privacy-policy
+        http_status: 200
+        fetched: '2026-10-20'
+        section: Artificial intelligence
+        quote: "One of the ways we do this is by using artificial intelligence for a range of purposes, including:"
+        note: The listed purposes are chatbots, call and chat monitoring with sentiment analysis, fraud-detection automation, personalisation and predictive analytics, and "training AI models". This is a privacy-policy disclosure, not a dedicated AI transparency page.
+  accessibility_conformance:
+    url: https://www.nab.com.au/about-us/accessibility-inclusion/online-banking-features
+    standard: [WCAG 2.2 AA]
+    conformance_claimed: false
+    evidence:
+      - source: https://www.nab.com.au/about-us/accessibility-inclusion/online-banking-features
+        http_status: 200
+        fetched: '2026-10-20'
+        section: Web accessibility
+        quote: "We’re working towards the Web Content Accessibility Guidelines (WCAG) 2.2 Level AA."
+        note: A stated goal, not a conformance claim. No VPAT or conformance report was found.

@@ -1,8 +1,52 @@
-generated: '2026-07-20'
+name: National Australia Bank agent skills
+generated: '2026-10-20'
 method: generated
-source: openapi/national-australia-bank-cds-banking-products-openapi.yml
+source: openapi/
 skills:
-  - file: national-australia-bank-browse-products.md
-    name: Browse NAB banking products
-    api: openapi/national-australia-bank-cds-banking-products-openapi.yml
-    operations: [listBankingProducts, getBankingProductDetail]
+- file: national-australia-bank-browse-products.md
+  name: national-australia-bank-browse-products
+  description: Retrieve and filter NAB's openly published banking product catalogue (home loans, deposits, credit cards, business products) and drill into a single product's fees, rates, eligibility and
+    terms via the public CDR Product Reference Data API. No authentication required.
+  api: openapi/national-australia-bank-banking-products-api-openapi.yml
+  operations:
+  - listBankingProducts
+  - getBankingProductDetail
+- file: national-australia-bank-gateway-accept-payment.md
+  name: national-australia-bank-gateway-accept-payment
+  description: Authorise, capture, refund, void or reverse a card payment on NAB Gateway (a white-label of the Cybersource / Visa Acceptance REST platform) and look the transaction up afterwards.
+  api: openapi/national-australia-bank-gateway-payments-api-openapi.yml
+  operations:
+  - createPayment
+  - capturePayment
+  - refundPayment
+  - voidPayment
+  - authReversal
+  - getTransaction
+- file: national-australia-bank-gateway-invoices-and-pay-by-link.md
+  name: national-australia-bank-gateway-invoices-and-pay-by-link
+  description: Create, send, list and cancel invoices and create or update Pay by Link payment links on NAB Gateway (Cybersource platform) - the same operations the Visa Acceptance local MCP server exposes
+    as tools.
+  api: openapi/national-australia-bank-gateway-payments-api-openapi.yml
+  operations:
+  - createInvoice
+  - getAllInvoices
+  - getInvoice
+  - updateInvoice
+  - performSendAction
+  - performCancelAction
+  - createPaymentLink
+  - getAllPaymentLinks
+  - getPaymentLink
+  - updatePaymentLink
+- file: national-australia-bank-read-consented-account-data.md
+  name: national-australia-bank-read-consented-account-data
+  description: As a CDR-accredited data recipient holding a valid consumer consent, read a NAB customer's accounts, balances and transactions through the DSB Consumer Data Standards Banking APIs NAB implements
+    as a mandated data holder.
+  api: openapi/national-australia-bank-banking-accounts-api-openapi.yml
+  operations:
+  - listBankingAccounts
+  - getBankingAccountDetail
+  - listBankingBalancesBulk
+  - getBankingBalance
+  - listBankingTransactions
+  - getBankingTransactionDetail

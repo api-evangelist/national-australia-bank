@@ -1,0 +1,27 @@
+generated: '2026-10-20'
+method: none
+source: https://nabgateway-developer.nab.com.au/resources/rest-api-sdks.html
+note: 'no first-party package: every candidate a model listed was unowned (harvest-packages.py --audit)'
+packages: []
+rejected:
+- name: cybersource-rest-client
+  registry: npm
+  reason: 'official: false as written'
+- name: cybersource-rest-client-python
+  registry: pypi
+  reason: 'official: false as written'
+- name: cybersource_rest_client
+  registry: rubygems
+  reason: 'official: false as written'
+- name: cybersource/rest-client-php
+  registry: packagist
+  reason: 'official: false as written'
+- name: com.cybersource:cybersource-rest-client-java
+  registry: maven
+  reason: 'official: false as written'
+- name: CyberSource.Rest.Client.NetStandard
+  registry: nuget
+  reason: 'official: false as written'
+- name: CyberSource.Rest.Client
+  registry: nuget
+  reason: 'official: false as written'

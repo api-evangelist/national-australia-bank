@@ -1,0 +1,66 @@
+generated: '2026-10-20'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: akamai
+  name: Akamai
+  area: cdn
+  host: ib.nab.com.au
+  evidence: cname:akamaiedge.net
+  signal: cname
+  confidence: high
+  kin_score: []
+- vendor: cloudflare
+  name: Cloudflare
+  area: cdn
+  host: nabgateway-developer.nab.com.au
+  evidence: cname:cloudflare.net
+  signal: cname
+  confidence: high
+  kin_score:
+  - https_enforced
+  - hsts
+- vendor: fastly
+  name: Fastly
+  area: cdn
+  host: www.nab.com.au
+  evidence: header:x-served-by:cache-
+  signal: header
+  confidence: high
+  kin_score: []
+reliance:
+  areas_vendor_served:
+  - cdn
+  vendor_count: 3
+  areas_observed: 12
+  share_of_observable_areas: 0.083
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: custom'
+- ib.nab.com.au (Login)
+- www.nab.com.au (Website)
+- developer.nab.com.au (DeveloperPortal)
+- nabgateway-developer.nab.com.au (Portal)
+- nabgateway-developer.nab.com.au (Documentation)
+- www.nab.com.au (Documentation)
+- nabgateway-developer.nab.com.au (APIReference)
+- nabgateway-developer.nab.com.au (GettingStarted)
+- nabgateway-developer.nab.com.au (Support)
+- www.nab.com.au (HelpCenter)
+- apitest.cybersource.com (baseURL)
+- openbank.api.nab.com.au (baseURL)

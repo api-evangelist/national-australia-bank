@@ -1,90 +1,131 @@
-generated: '2026-07-20'
-method: derived
-status: candidate
-source: openapi/national-australia-bank-cds-banking-products-openapi.yml
+generated: '2026-10-20'
+method: searched
+status: third-party-platform
+source:
+- https://nabgateway-developer.nab.com.au/llms.txt
+- https://developer.visaacceptance.com/docs/vas/en-us/agent-toolkit/quick-start/all/na/agent-toolkit/agent-toolkit-intro.md
+- https://developer.visaacceptance.com/docs/vas/en-us/agent-toolkit/quick-start/all/na/agent-toolkit/agent-toolkit-options/agent-toolkit-mcp.md
+note: 'National Australia Bank publishes NO MCP server of its own: developer.nab.com.au/llms.txt returns the HTML app shell (no llms.txt), www.nab.com.au/llms.txt (200, 9,808 B) does not mention MCP, and
+  the pre-flight MCP-docs probe found no-mcp-docs-found; openbank.api.nab.com.au/mcp answered 403 with an identical 403 control (opaque, proves nothing). The ONLY MCP surface reachable from NAB''s own properties
+  is on the NAB Gateway developer portal (nabgateway-developer.nab.com.au), a white-label of the Cybersource Developer Center: its llms.txt (200, 148,349 B) has an ''Agent Toolkit & MCP'' section linking
+  the Visa Acceptance Agent Toolkit, whose MCP Server Quick Start states ''This is a local MCP server'' run with npx. It is published by Visa Acceptance Solutions (Cybersource), not by NAB, documented as
+  pilot phase, and the docs do not say whether NAB Gateway merchant credentials work with it. Not called by us.'
 server:
-  name: national-australia-bank
-  transport: http
-tools:
-- name: list_banking_products
-  description: Get NAB's openly published banking product catalogue (public, unauthenticated).
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listBankingProducts
-  public: true
-- name: get_banking_product_detail
-  description: Get detailed information on a single openly offered product by productId (public, unauthenticated).
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#getBankingProductDetail
-  public: true
-- name: list_banking_accounts
-  description: Obtain a list of accounts.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listBankingAccounts
-  public: false
-- name: get_banking_account_detail
-  description: Obtain detailed information on a single account.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#getBankingAccountDetail
-  public: false
-- name: list_banking_balances_bulk
-  description: Obtain balances for multiple accounts.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listBankingBalancesBulk
-  public: false
-- name: list_banking_balances_specific_accounts
-  description: Obtain balances for a specified list of accounts.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listBankingBalancesSpecificAccounts
-  public: false
-- name: get_banking_balance
-  description: Obtain the balance for a single specified account.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#getBankingBalance
-  public: false
-- name: list_banking_transactions
-  description: Obtain transactions for a specific account.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listBankingTransactions
-  public: false
-- name: get_banking_transaction_detail
-  description: Obtain detailed information on a single transaction.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#getBankingTransactionDetail
-  public: false
-- name: list_direct_debits
-  description: Obtain direct debit authorisations for a specific account.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listDirectDebits
-  public: false
-- name: list_direct_debits_bulk
-  description: Obtain direct debit authorisations for multiple accounts.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listDirectDebitsBulk
-  public: false
-- name: list_direct_debits_specific_accounts
-  description: Obtain direct debit authorisations for a specified list of accounts.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listDirectDebitsSpecificAccounts
-  public: false
-- name: list_scheduled_payments
-  description: Obtain scheduled payments for a specific account.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listScheduledPayments
-  public: false
-- name: list_scheduled_payments_bulk
-  description: Obtain scheduled payments for multiple accounts.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listScheduledPaymentsBulk
-  public: false
-- name: list_scheduled_payments_specific_accounts
-  description: Obtain scheduled payments for a specified list of accounts.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listScheduledPaymentsSpecificAccounts
-  public: false
-- name: list_instalment_plans
-  description: Obtain instalment plans for a specific account.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listInstalmentPlans
-  public: false
-- name: list_instalment_plans_bulk
-  description: Obtain instalment plans for multiple accounts.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listInstalmentPlansBulk
-  public: false
-- name: list_banking_payees
-  description: Obtain a list of payees.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#listBankingPayees
-  public: false
-- name: get_banking_payee_detail
-  description: Obtain detailed information on a single payee.
-  source_operation: openapi/national-australia-bank-cds-banking-products-openapi.yml#getBankingPayeeDetail
-  public: false
+  name: '@visaacceptance/mcp'
+  publisher: Visa Acceptance Solutions (Cybersource) - the payment platform behind NAB Gateway
+  official_to_provider: false
+  transport: stdio
+  phase: pilot
 deployment:
-  mode: none
-  verified: derived
-  tools: 19
-  checked: '2026-08-12'
-  source: catalog MCP census
+  mode: local-stdio
+  install: npx -y @visaacceptance/mcp --tools=all --merchant-id=MERCHANT_ID --api-key-id=API_KEY_ID --secret-key=SECRET_KEY
+  package: https://github.com/visaacceptance/agent-toolkit
+  auth: api-key
+  verified: searched
+auth:
+  type: api-key
+  detail: merchant-id, api-key-id and secret-key passed as CLI flags (Cybersource HTTP-signature keys); quick-start commands target the test environment.
+tools:
+- name: invoices.create
+  category: invoicing
+  documented: true
+  evidence_url: https://developer.visaacceptance.com/docs/vas/en-us/agent-toolkit/quick-start/all/na/agent-toolkit/agent-toolkit-options/agent-toolkit-mcp.md
+  source_operation: openapi/national-australia-bank-gateway-payments-api-openapi.yml#createInvoice
+- name: invoices.update
+  category: invoicing
+  documented: true
+  evidence_url: https://developer.visaacceptance.com/docs/vas/en-us/agent-toolkit/quick-start/all/na/agent-toolkit/agent-toolkit-options/agent-toolkit-mcp.md
+  source_operation: openapi/national-australia-bank-gateway-payments-api-openapi.yml#updateInvoice
+- name: invoices.list
+  category: invoicing
+  documented: true
+  evidence_url: https://developer.visaacceptance.com/docs/vas/en-us/agent-toolkit/quick-start/all/na/agent-toolkit/agent-toolkit-options/agent-toolkit-mcp.md
+  source_operation: openapi/national-australia-bank-gateway-payments-api-openapi.yml#getAllInvoices
+- name: invoices.get
+  category: invoicing
+  documented: true
+  evidence_url: https://developer.visaacceptance.com/docs/vas/en-us/agent-toolkit/quick-start/all/na/agent-toolkit/agent-toolkit-options/agent-toolkit-mcp.md
+  source_operation: openapi/national-australia-bank-gateway-payments-api-openapi.yml#getInvoice
+- name: invoices.send
+  category: invoicing
+  documented: true
+  evidence_url: https://developer.visaacceptance.com/docs/vas/en-us/agent-toolkit/quick-start/all/na/agent-toolkit/agent-toolkit-options/agent-toolkit-mcp.md
+  source_operation: openapi/national-australia-bank-gateway-payments-api-openapi.yml#performSendAction
+- name: invoices.cancel
+  category: invoicing
+  documented: true
+  evidence_url: https://developer.visaacceptance.com/docs/vas/en-us/agent-toolkit/quick-start/all/na/agent-toolkit/agent-toolkit-options/agent-toolkit-mcp.md
+  source_operation: openapi/national-australia-bank-gateway-payments-api-openapi.yml#performCancelAction
+- name: paymentLinks.create
+  category: pay-by-link
+  documented: true
+  evidence_url: https://developer.visaacceptance.com/docs/vas/en-us/agent-toolkit/quick-start/all/na/agent-toolkit/agent-toolkit-options/agent-toolkit-mcp.md
+  source_operation: openapi/national-australia-bank-gateway-payments-api-openapi.yml#createPaymentLink
+- name: paymentLinks.update
+  category: pay-by-link
+  documented: true
+  evidence_url: https://developer.visaacceptance.com/docs/vas/en-us/agent-toolkit/quick-start/all/na/agent-toolkit/agent-toolkit-options/agent-toolkit-mcp.md
+  source_operation: openapi/national-australia-bank-gateway-payments-api-openapi.yml#updatePaymentLink
+- name: paymentLinks.list
+  category: pay-by-link
+  documented: true
+  evidence_url: https://developer.visaacceptance.com/docs/vas/en-us/agent-toolkit/quick-start/all/na/agent-toolkit/agent-toolkit-options/agent-toolkit-mcp.md
+  source_operation: openapi/national-australia-bank-gateway-payments-api-openapi.yml#getAllPaymentLinks
+- name: paymentLinks.get
+  category: pay-by-link
+  documented: true
+  evidence_url: https://developer.visaacceptance.com/docs/vas/en-us/agent-toolkit/quick-start/all/na/agent-toolkit/agent-toolkit-options/agent-toolkit-mcp.md
+  source_operation: openapi/national-australia-bank-gateway-payments-api-openapi.yml#getPaymentLink
+tool_evidence:
+  l3: table
+  note: Tool names read from the Tool/API Service/Field table in the provider-platform docs; never returned by a live tools/list.
+candidate_tools:
+  status: candidate
+  method: derived
+  deployment_mode: none
+  note: No server exists for NAB CDR Open Banking. Candidate tools derived from the CDS Banking operations NAB implements; only the Product Reference Data tools are callable without CDR accreditation.
+  tools:
+  - name: list_banking_products
+    description: List NAB public banking products (CDR Product Reference Data; unauthenticated).
+    public: true
+    source_operation: openapi/national-australia-bank-banking-products-api-openapi.yml#listBankingProducts
+  - name: get_banking_product_detail
+    description: Get one NAB banking product by productId (public).
+    public: true
+    source_operation: openapi/national-australia-bank-banking-products-api-openapi.yml#getBankingProductDetail
+  - name: list_banking_accounts
+    description: List consumer accounts (accredited data recipient + consent only).
+    public: false
+    source_operation: openapi/national-australia-bank-banking-accounts-api-openapi.yml#listBankingAccounts
+  - name: get_banking_account_detail
+    description: Get account detail (accredited only).
+    public: false
+    source_operation: openapi/national-australia-bank-banking-accounts-api-openapi.yml#getBankingAccountDetail
+  - name: list_banking_balances_bulk
+    description: Balances for all consented accounts (accredited only).
+    public: false
+    source_operation: openapi/national-australia-bank-banking-account-balances-api-openapi.yml#listBankingBalancesBulk
+  - name: get_banking_balance
+    description: Balance for one account (accredited only).
+    public: false
+    source_operation: openapi/national-australia-bank-banking-account-balances-api-openapi.yml#getBankingBalance
+  - name: list_banking_transactions
+    description: Transactions for one account (accredited only).
+    public: false
+    source_operation: openapi/national-australia-bank-banking-account-transactions-api-openapi.yml#listBankingTransactions
+  - name: get_banking_transaction_detail
+    description: One transaction detail (accredited only).
+    public: false
+    source_operation: openapi/national-australia-bank-banking-account-transactions-api-openapi.yml#getBankingTransactionDetail
+  - name: list_banking_payees
+    description: List payees (accredited only).
+    public: false
+    source_operation: openapi/national-australia-bank-banking-payees-api-openapi.yml#listBankingPayees
+  - name: list_direct_debits
+    description: Direct debit authorisations for one account (accredited only).
+    public: false
+    source_operation: openapi/national-australia-bank-banking-account-direct-debits-api-openapi.yml#listDirectDebits
+  - name: list_scheduled_payments
+    description: Scheduled payments for one account (accredited only).
+    public: false
+    source_operation: openapi/national-australia-bank-banking-account-scheduled-payments-api-openapi.yml#listScheduledPayments

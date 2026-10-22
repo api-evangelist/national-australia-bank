@@ -1,0 +1,15 @@
+generated: '2026-10-20'
+method: none
+source:
+- https://developer.nab.com.au/ourapis
+- https://nabgateway-developer.nab.com.au/llms.txt
+- https://nabgateway-developer.nab.com.au/resources/rest-api-sdks.html
+name: National Australia Bank rate limits
+limit_count: 0
+limits: []
+note: >-
+  No numeric rate limits are published on NAB's developer hosts. The NAB Gateway portal (CyberSource-powered)
+  and its llms.txt index state no throughput limits or rate-limit headers; developer.nab.com.au (CDR Open
+  Banking) is a JavaScript app whose rendered pages named no limits. CDR data holders are subject to the
+  Consumer Data Standards non-functional requirements (traffic thresholds), which are set by the DSB, not
+  published by NAB, and are not transcribed here.

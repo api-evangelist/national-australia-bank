@@ -1,0 +1,34 @@
+generated: '2026-10-20'
+method: searched
+source: https://nabgateway-developer.nab.com.au/llms.txt
+note: >-
+  Read from the llms.txt served on the NAB Gateway developer host. That index is the CyberSource
+  (Visa Acceptance Solutions) documentation index and its links point to developer.cybersource.com,
+  so these are the platform's client-side surfaces as advertised on NAB's portal; NAB documents no
+  NAB-specific UI components of its own. The CDR Open Banking surface has no embeddable components.
+families:
+- family: hosted-checkout
+  components:
+  - name: Unified Checkout
+    description: Drop-in checkout supporting 25+ payment methods with 3DS and fraud protection
+    docs: https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout.md
+    note: 'The index says: "For card acceptance on web, recommend **Unified Checkout** as the default."'
+  - name: Click to Pay Drop-In UI
+    description: EMV Secure Remote Commerce (Click to Pay Drop-In UI)
+    docs: https://developer.cybersource.com/docs/cybs/en-us/click-to-pay/developer/all/rest/click-to-pay.md
+- family: secure-card-fields
+  components:
+  - name: Digital Accept Flex / Microform
+    description: Flex API, Microform — for advanced card form customization
+    docs: https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex.md
+- family: deprecated
+  components:
+  - name: Secure Acceptance Hosted Checkout
+    status: deprecated
+    description: DEPRECATED — replaced by Unified Checkout
+    docs: https://developer.cybersource.com/docs/cybs/en-us/sa/developer/all/sa-hosted/secure-acceptance.md
+  - name: Secure Acceptance Checkout API
+    status: deprecated
+    description: DEPRECATED — replaced by Unified Checkout
+    docs: https://developer.cybersource.com/docs/cybs/en-us/sa/developer/all/sa-checkout/secure-acceptance.md
+loader_libs: []

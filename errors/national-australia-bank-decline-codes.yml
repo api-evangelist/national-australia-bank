@@ -1,0 +1,690 @@
+generated: '2026-10-20'
+method: searched
+source: https://nabgateway-developer.nab.com.au/content/dam/cybsdeveloper2021/responsecode.json
+docs: https://nabgateway-developer.nab.com.au/api/reference/response-codes.html
+note: NAB Gateway (CyberSource-powered) transaction response codes, transcribed from the downloadable responsecode.json linked from the NAB Developer Portal response-codes page. Applies to the Gateway Payments
+  API only, not the CDR Open Banking surface. The docs publish no list of codes masked from buyers.
+envelope:
+  status_field: status
+  reason_field: errorInformation.reason
+  note: 'Per the docs: "In declined or unsuccessful transactions, the API reply includes an ''errorInformation'' object and a ''status'' field. The ''errorInformation'' object contains a ''reason'' field."'
+http_statuses:
+- status: 201
+  meaning: This HTTP status code confirms that the NAB API created a transaction resource ID. If you get this HTTP status code for an unsuccessful transaction, NAB or the merchant's processor probably marked
+    this transaction as under review, declined, or failed.
+- status: 400
+  meaning: This HTTP status code indicates something is wrong or missing in the merchant's request. Try to correct the request and resubmit it.
+- status: 502
+  meaning: This HTTP status code indicates either a server error or timeout. Retry the transaction, and contact customer support if you need to investigate further.
+masked_to_buyers: null
+decline_codes:
+- code: EXPIRED_CARD
+  status: DECLINED
+  http_status: 201
+  meaning: 'Expired card. You might also receive this if the expiration date you provided does not match the date the issuing bank has on file. Note: The ccCreditService does not check the expiration date;
+    instead, it passes the request to the payment processor. If the payment processor allows issuance of credits to expired cards, CyberSource does not limit this functionality.'
+  action: Request a different card or other form of payment.
+  services:
+  - Payment
+  - Create [[decisionManager]] Case
+- code: PROCESSOR_DECLINED
+  status: DECLINED
+  http_status: 201
+  meaning: General decline of the card. No other information provided by the issuing bank.
+  action: Request a different card or other form of payment.
+  services:
+  - Payment
+- code: PROCESSOR_ERROR
+  status: DECLINED
+  http_status: 201
+  meaning: 'Unauthorized Transaction: Pick up card'
+  action: Refer the transaction to your customer support center for manual review.
+  services:
+  - Payment
+- code: INSUFFICIENT_FUND
+  status: DECLINED
+  http_status: 201
+  meaning: Insufficient funds in the account.
+  action: Request a different card or other form of payment.
+  services:
+  - Payment
+- code: STOLEN_LOST_CARD
+  status: DECLINED
+  http_status: 201
+  meaning: Stolen or lost card.
+  action: Refer the transaction to your customer support center for manual review.
+  services:
+  - Payment
+- code: ISSUER_UNAVAILABLE
+  status: DECLINED
+  http_status: 201
+  meaning: Issuing bank unavailable.
+  action: Wait a few minutes and resend the request.
+  services:
+  - Payment
+- code: UNAUTHORIZED_CARD
+  status: DECLINED
+  http_status: 201
+  meaning: Inactive card or card not authorized for card-not-present transactions.
+  action: Request a different card or other form of payment.
+  services:
+  - Payment
+- code: CVN_NOT_MATCH
+  status: DECLINED
+  http_status: 201
+  meaning: Card verification number (CVN) did not match.
+  action: Request a different card or other form of payment.
+  services:
+  - Payment
+- code: EXCEEDS_CREDIT_LIMIT
+  status: DECLINED
+  http_status: 201
+  meaning: The card has reached the credit limit.
+  action: Request a different card or other form of payment.
+  services:
+  - Payment
+- code: INVALID_CVN
+  status: DECLINED
+  http_status: 201
+  meaning: Invalid Card Verification Number (CVN).
+  action: Request a different card or other form of payment.
+  services:
+  - Payment
+- code: DECLINED_CHECK
+  status: DECLINED
+  http_status: 201
+  meaning: Generic Decline.
+  action: Request a different form of payment.
+  services:
+  - Payment
+- code: BLACKLISTED_CUSTOMER
+  status: DECLINED
+  http_status: 201
+  meaning: For eCheck payment, the customer matched an entry on the processor's negative file.
+  action: Review the order and contact the payment processor.
+  services:
+  - Payment
+- code: SUSPENDED_ACCOUNT
+  status: DECLINED
+  http_status: 201
+  meaning: For eCheck payment, Customer's account is frozen.
+  action: Review the order or request a different form of payment.
+  services:
+  - Payment
+- code: PAYMENT_REFUSED
+  status: DECLINED
+  http_status: 201
+  meaning: 'Decline - (A) Merchant account or payer’s account is not set up to process such transactions. (B) Insufficient funds in the payer’s funding source associated with the account, or transaction
+    declined by bank. (C) A particular action is not permitted, for example: capture refused, or the authorization has already been captured. (D) Fraud setting for the seller is blocking such payments.'
+  action: Try a different payment method or a different account.
+  services:
+  - Payment
+- code: INVALID_ACCOUNT
+  status: DECLINED
+  http_status: 201
+  meaning: Invalid account number.
+  action: Request a different card or other form of payment.
+  services:
+  - Payment
+  - Create [[decisionManager]] Case
+- code: GENERAL_DECLINE
+  status: DECLINED
+  http_status: 201
+  meaning: General decline by the processor.
+  action: Request a different card or other form of payment.
+  services:
+  - Payment
+- code: BOLETO_DECLINED
+  status: DECLINED
+  http_status: 201
+  meaning: The boleto request was declined by your processor.
+  action: Request a different card or other form of payment.
+  services:
+  - Payment
+- code: DEBIT_CARD_USAGE_LIMIT_EXCEEDED
+  status: DECLINED
+  http_status: 201
+  meaning: The Pinless Debit card's use frequency or maximum amount per use has been exceeded.
+  action: Request a different card or other form of payment.
+  services:
+  - Payment
+- code: CONSUMER_AUTHENTICATION_FAILED
+  status: DECLINED
+  http_status: 201
+  meaning: Encountered a [[payerAuthentication]] problem. Payer could not be authenticated.
+  action: Request or retry an authorization later.
+  services:
+  - Payment
+- code: APARTMENT_NUMBER_NOT_FOUND
+  status: DECLINED
+  http_status: 201
+  meaning: The apartment number missing or not found.
+  action: Ask the customer to verify the address information and resend the request.
+  services:
+  - Verify Customer Address
+- code: INSUFFICIENT_ADDRESS_INFORMATION
+  status: DECLINED
+  http_status: 201
+  meaning: The request contains insufficient address information.
+  action: Ask the customer to verify the address information and resend the request.
+  services:
+  - Verify Customer Address
+- code: HOUSE_OR_BOX_NUMBER_NOT_FOUND
+  status: DECLINED
+  http_status: 201
+  meaning: The house number or post office box identifier cannot be found on the specified street.
+  action: Ask the customer to verify the address information and resend the request.
+  services:
+  - Verify Customer Address
+- code: MULTIPLE_ADDRESS_MATCHES
+  status: DECLINED
+  http_status: 201
+  meaning: Multiple address matches were found. This code is returned only for U.S. addresses.
+  action: Ask the customer to verify the address information and resend the request.
+  services:
+  - Verify Customer Address
+- code: BOX_NUMBER_NOT_FOUND
+  status: DECLINED
+  http_status: 201
+  meaning: The post office box identifier cannot be found or is out of range.
+  action: Ask the customer to verify the address information and resend the request.
+  services:
+  - Verify Customer Address
+- code: ROUTE_SERVICE_NOT_FOUND
+  status: DECLINED
+  http_status: 201
+  meaning: The route service identifier cannot be found or is out of range.
+  action: Ask the customer to verify the address information and resend the request.
+  services:
+  - Verify Customer Address
+- code: STREET_NAME_NOT_FOUND
+  status: DECLINED
+  http_status: 201
+  meaning: The street name cannot be found in the specified postal code.
+  action: Ask the customer to verify the address information and resend the request.
+  services:
+  - Verify Customer Address
+- code: POSTAL_CODE_NOT_FOUND
+  status: DECLINED
+  http_status: 201
+  meaning: The postal code cannot be found.
+  action: Ask the customer to verify the address information and resend the request.
+  services:
+  - Verify Customer Address
+- code: UNVERIFIABLE_ADDRESS
+  status: DECLINED
+  http_status: 201
+  meaning: The address cannot be verified or corrected.
+  action: Ask the customer to verify the address information and resend the request.
+  services:
+  - Verify Customer Address
+- code: MULTIPLE_ADDRESS_MATCHES_INTERNATIONAL
+  status: DECLINED
+  http_status: 201
+  meaning: Multiple address matches were found; returned for only non-U.S. addresses.
+  action: Ask the customer to verify the address information and resend the request.
+  services:
+  - Verify Customer Address
+- code: ADDRESS_MATCH_NOT_FOUND
+  status: DECLINED
+  http_status: 201
+  meaning: An address match cannot be found; No reason can be given.
+  action: Ask the customer to verify the address information and resend the request.
+  services:
+  - Verify Customer Address
+- code: UNSUPPORTED_CHARACTER_SET
+  status: DECLINED
+  http_status: 201
+  meaning: The character set is not supported by the address verification service.
+  action: Ask the customer to verify the address information and resend the request.
+  services:
+  - Verify Customer Address
+- code: CUSTOMER_WATCHLIST_MATCH
+  status: DECLINED
+  http_status: 201
+  meaning: The customer is on a list issued by a government agency containing entities with whom trade is restricted.
+  action: Reject the customer’s order.
+  services:
+  - Validate Export Compliance
+- code: ADDRESS_COUNTRY_WATCHLIST_MATCH
+  status: DECLINED
+  http_status: 201
+  meaning: 'One or both of these events occurred: 1. A government agency maintains an embargo against the country indicated in the billing or shipping address. 2. You supplied an export list for one or
+    more of the offers in the order, but the shipping country submitted by the customer is not in that list.'
+  action: Reject the customer’s order
+  services:
+  - Validate Export Compliance
+- code: EMAIL_COUNTRY_WATCHLIST_MATCH
+  status: DECLINED
+  http_status: 201
+  meaning: A government agency maintains an embargo against the country associated with the email address.
+  action: Reject the customer’s order
+  services:
+  - Validate Export Compliance
+- code: IP_COUNTRY_WATCHLIST_MATCH
+  status: DECLINED
+  http_status: 201
+  meaning: A government agency maintains an embargo against the country associated with the IP address..
+  action: Reject the customer’s order
+  services:
+  - Validate Export Compliance
+other_statuses:
+- code: N/A
+  status: AUTHORIZED
+  http_status: 201
+  meaning: Successful transaction.
+  action: N/A
+  services:
+  - Payment
+- code: N/A
+  status: PARTIAL_AUTHORIZED
+  http_status: 201
+  meaning: Partial amount was approved.
+  action: N/A
+  services:
+  - Payment
+- code: AVS_FAILED
+  status: AUTHORIZED_PENDING_REVIEW
+  http_status: 201
+  meaning: The authorization request was approved by the issuing bank but declined by CyberSource because it did not pass the Address Verification Service (AVS) check.
+  action: You can capture the authorization, but consider reviewing the order for the possibility of fraud.
+  services:
+  - Payment
+- code: CONTACT_PROCESSOR
+  status: AUTHORIZED_PENDING_REVIEW
+  http_status: 201
+  meaning: The issuing bank has questions about the request. You do not receive an authorization code programmatically, but you might receive one verbally by calling the processor.
+  action: Call your processor to possibly receive a verbal authorization. For contact phone numbers, refer to your merchant bank information.
+  services:
+  - Payment
+- code: CV_FAILED
+  status: AUTHORIZED_PENDING_REVIEW
+  http_status: 201
+  meaning: The authorization request was approved by the issuing bank but declined by CyberSource because it did not pass the card verification number (CVN) check.
+  action: You can capture the authorization, but consider reviewing the order for the possibility of fraud.
+  services:
+  - Payment
+- code: INVALID_MERCHANT_CONFIGURATION
+  status: INVALID_REQUEST
+  http_status: 201
+  meaning: There is a problem with your CyberSource merchant configuration.
+  action: Do not resend the request. Contact Customer Support to correct the configuration problem.
+  services:
+  - Payment
+  - Capture
+  - Refund
+  - Credit
+  - Void
+  - Create [[decisionManager]] Case
+  - List Management
+  - Fraud Marking
+  - Verify Customer Address
+  - Validate Export Compliance
+  - Check Payer Auth Enrollment
+  - Validate Authentication Results
+- code: PROCESSOR_TIMEOUT
+  status: SERVER_ERROR
+  http_status: 201
+  meaning: The request was received, but there was a timeout at the payment processor.
+  action: To avoid duplicating the transaction, do not resend the request until you have reviewed the transaction status in the Enterprise Business Center.
+  services:
+  - Payment
+  - Capture
+  - Reversal
+  - Refund
+  - Credit
+  - Void
+- code: SCORE_EXCEEDS_THRESHOLD
+  status: AUTHORIZED_RISK_DECLINED
+  http_status: 201
+  meaning: Soft Decline - Fraud score exceeds threshold.
+  action: Request or retry an authorization later.
+  services:
+  - Payment
+- code: CONSUMER_AUTHENTICATION_REQUIRED
+  status: PENDING_AUTHENTICATION
+  http_status: 201
+  meaning: The cardholder is enrolled in [[payerAuthentication]]. Please authenticate the cardholder before continuing with the transaction.
+  action: Request or retry an authorization later.
+  services:
+  - Payment
+  - Create [[decisionManager]] Case
+  - Check Payer Auth Enrollment
+- code: DECISION_PROFILE_REVIEW
+  status: AUTHORIZED_PENDING_REVIEW
+  http_status: 201
+  meaning: The order is marked for review by [[decisionManager]]
+  action: Request or retry an authorization later.
+  services:
+  - Payment
+- code: DECISION_PROFILE_REJECT
+  status: AUTHORIZED_RISK_DECLINED
+  http_status: 201
+  meaning: The order has been rejected by [[decisionManager]]
+  action: Request or retry an authorization later.
+  services:
+  - Payment
+- code: MISSING_FIELD
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: The request is missing one or more fields.
+  action: See the reply fields statusInformation.details[] for which fields are missing. Resend the request with the correct information.
+  services:
+  - Payment
+  - Capture
+  - Reversal
+  - Refund
+  - Credit
+  - Void
+  - Create [[decisionManager]] Case
+  - List Management
+  - Fraud Marking
+  - Verify Customer Address
+  - Validate Export Compliance
+  - Check Payer Auth Enrollment
+  - Validate Authentication Results
+- code: INVALID_DATA
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: One or more fields in the request contains invalid data.
+  action: See the reply fields statusInformation.details[] for which fields are invalid. Resend the request with the correct information.
+  services:
+  - Payment
+  - Capture
+  - Reversal
+  - Refund
+  - Credit
+  - Void
+  - Create [[decisionManager]] Case
+  - List Management
+  - Fraud Marking
+  - Verify Customer Address
+  - Validate Export Compliance
+  - Check Payer Auth Enrollment
+  - Validate Authentication Results
+- code: DUPLICATE_REQUEST
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: The merchantReferenceCode sent with this authorization request matches the merchantReferenceCode of another authorization request that you sent in the last 15 minutes.
+  action: Resend the request with a unique merchantReferenceCode value.
+  services:
+  - Payment
+  - Capture
+  - Reversal
+  - Refund
+  - Credit
+  - Void
+  - List Management
+  - Fraud Marking
+- code: CARD_TYPE_NOT_ACCEPTED
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: The card type is not accepted by the payment processor.
+  action: Contact your merchant bank to confirm that your account is set up to receive the card in question.
+  services:
+  - Payment
+- code: PROCESSOR_UNAVAILABLE
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: Processor failure.
+  action: Wait a few minutes and resend the request.
+  services:
+  - Payment
+  - Reversal
+- code: INVALID_AMOUNT
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: The requested transaction amount must match the previous transaction amount.
+  action: Correct the amount and resend the request.
+  services:
+  - Payment
+  - Capture
+  - Reversal
+  - Refund
+  - Credit
+  - Void
+- code: INVALID_CARD_TYPE
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: The card type sent is invalid or does not correlate with the credit card number.
+  action: Confirm that the card type correlates with the credit card number specified in the request, then resend the request.
+  services:
+  - Payment
+- code: SYSTEM_ERROR
+  status: SERVER_ERROR
+  http_status: 502
+  meaning: General system failure.
+  action: See the documentation for your CyberSource client (SDK) for information about how to handle retries in the case of system errors.
+  services:
+  - Payment
+  - Capture
+  - Reversal
+  - Refund
+  - Credit
+  - Void
+  - Create [[decisionManager]] Case
+  - Verify Customer Address
+  - Validate Export Compliance
+  - Check Payer Auth Enrollment
+  - Validate Authentication Results
+- code: SERVER_TIMEOUT
+  status: SERVER_ERROR
+  http_status: 502
+  meaning: The request was received but there was a server timeout. This error does not include timeouts between the client and the server.
+  action: To avoid duplicating the transaction, do not resend the request until you have reviewed the transaction status in the Business Center. See the documentation for your CyberSource client (SDK) for
+    information about how to handle retries in the case of system errors.
+  services:
+  - Payment
+  - Capture
+  - Reversal
+  - Refund
+  - Credit
+  - Void
+  - Create [[decisionManager]] Case
+  - Verify Customer Address
+  - Validate Export Compliance
+  - Check Payer Auth Enrollment
+  - Validate Authentication Results
+- code: SERVICE_TIMEOUT
+  status: SERVER_ERROR
+  http_status: 502
+  meaning: The request was received, but a service did not finish running in time.
+  action: To avoid duplicating the transaction, do not resend the request until you have reviewed the transaction status in the Enterprise Business Center. See the documentation for your CyberSource client
+    (SDK) for information about how to handle retries in the case of system errors.
+  services:
+  - Payment
+  - Capture
+  - Reversal
+  - Refund
+  - Credit
+  - Void
+  - Create [[decisionManager]] Case
+  - Verify Customer Address
+  - Validate Export Compliance
+  - Check Payer Auth Enrollment
+  - Validate Authentication Results
+- code: INVALID_OR_MISSING_CONFIG
+  status: SERVER_ERROR
+  http_status: 502
+  meaning: Error - Invalid or missing merchant configuration
+  action: Do not resend the request. Contact Customer Support to correct the configuration problem.
+  services:
+  - Payment
+  - Capture
+  - Reversal
+  - Refund
+  - Credit
+  - Void
+- code: N/A
+  status: PENDING
+  http_status: 201
+  meaning: Successful transaction.
+  action: N/A
+  services:
+  - Capture
+  - Refund
+  - Credit
+- code: EXCEEDS_AUTH_AMOUNT
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: The requested amount exceeds the originally authorized amount. Occurs, for example, if you try to capture an amount larger than the original authorization amount.
+  action: Issue a new authorization and capture request for the new amount.
+  services:
+  - Capture
+- code: AUTH_ALREADY_REVERSED
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: The authorization has already been reversed.
+  action: No action required.
+  services:
+  - Capture
+  - Reversal
+- code: TRANSACTION_ALREADY_SETTLED
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: The transaction has already been settled.
+  action: No action required.
+  services:
+  - Capture
+  - Reversal
+- code: INVALID_PAYMENT_ID
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: The referenced request id is invalid for all follow-on transactions.
+  action: No action required.
+  services:
+  - Capture
+  - Reversal
+- code: MISSING_AUTH
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: You requested a capture, but there is no corresponding, unused authorization record. Occurs if there was not a previously successful authorization request or if the previously successful authorization
+    has already been used in another capture request.
+  action: Request a new authorization, and if successful, proceed with the capture.
+  services:
+  - Capture
+  - Reversal
+- code: TRANSACTION_ALREADY_REVERSED_OR_SETTLED
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: The transaction has already been settled or reversed.
+  action: No action required.
+  services:
+  - Capture
+  - Reversal
+- code: N/A
+  status: REVERSED
+  http_status: 201
+  meaning: Successful transaction.
+  action: N/A
+  services:
+  - Reversal
+- code: INVALID_CARD
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: Invalid account number.
+  action: Request a different card or other form of payment.
+  services:
+  - Refund
+  - Credit
+- code: CAPTURE_ALREADY_VOIDED
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: You requested a credit for a capture that was previously voided.
+  action: No action required.
+  services:
+  - Refund
+  - Credit
+- code: ACCOUNT_NOT_ALLOWED_CREDIT
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: Account is prohibited from processing stand-alone refunds.
+  action: Submit a follow-on credit by including a request ID in the credit request. A follow-on credit must be requested within 60 days of the authorization.To process stand-alone credits, contact your
+    CyberSource account representative to find out if your processor supports stand-alone credits.
+  services:
+  - Refund
+  - Credit
+- code: N/A
+  status: VOIDED
+  http_status: 201
+  meaning: Successful transaction.
+  action: N/A
+  services:
+  - Void
+- code: NOT_VOIDABLE
+  status: INVALID_REQUEST
+  http_status: 400
+  meaning: The capture or credit is not voidable because the capture or credit information has already been submitted to your processor. Or, you requested a void for a type of transaction that cannot be
+    voided.
+  action: No action required.
+  services:
+  - Void
+- code: N/A
+  status: ACCEPTED
+  http_status: 201
+  meaning: Successful transaction.
+  action: N/A
+  services:
+  - Create [[decisionManager]] Case
+- code: SCORE_EXCEEDS_THRESHOLD
+  status: REJECTED
+  http_status: 201
+  meaning: The fraud score exceeds your threshold.
+  action: Review the customer’s order.
+  services:
+  - Create [[decisionManager]] Case
+- code: AUTHENTICATION_FAILED
+  status: AUTHENTICATION_FAILED
+  http_status: 201
+  meaning: The customer cannot be authenticated.
+  action: Review the customer’s order.
+  services:
+  - Create [[decisionManager]] Case
+  - Validate Authentication Results
+- code: DECISION_PROFILE_REVIEW
+  status: PENDING_REVIEW
+  http_status: 201
+  meaning: The order is marked for review by [[decisionManager]].
+  action: N/A
+  services:
+  - Create [[decisionManager]] Case
+- code: DECISION_PROFILE_REJECT
+  status: REJECTED
+  http_status: 201
+  meaning: The order is rejected by [[decisionManager]] Or Account Takeover Protection Service.
+  action: N/A
+  services:
+  - Create [[decisionManager]] Case
+- code: DECISION_PROFILE_CHALLENGE
+  status: CHALLENGE
+  http_status: 201
+  meaning: The order is marked for challenge by [[decisionManager]] Account Takeover Protection Service
+  action: N/A
+  services:
+  - Create [[decisionManager]] Case
+- code: N/A
+  status: COMPLETED
+  http_status: 201
+  meaning: Successful transaction.
+  action: N/A
+  services:
+  - List Management
+  - Fraud Marking
+  - Verify Customer Address
+  - Validate Export Compliance
+- code: N/A
+  status: AUTHENTICATION_SUCCESSFUL
+  http_status: 201
+  meaning: Successful transaction.
+  action: N/A
+  services:
+  - Check Payer Auth Enrollment
+  - Validate Authentication Results
+- code: CONSUMER_AUTHENTICATION_FAILED
+  status: AUTHENTICATION_FAILED
+  http_status: 201
+  meaning: The customer cannot be authenticated.
+  action: Review the customer’s order.
+  services:
+  - Check Payer Auth Enrollment
+  - Validate Authentication Results

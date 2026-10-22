@@ -1,0 +1,36 @@
+generated: '2026-10-20'
+method: searched
+source: https://www.nab.com.au/business/payments-and-merchants/ecommerce-and-online-payments/nab-gateway
+name: National Australia Bank pricing
+audience: business-product
+pricing_basis: ad-valorem
+published: true
+delivery:
+  delivery: managed
+note: >-
+  NAB Gateway merchant pricing (the product the Gateway Payments API comes with). Each figure is
+  rendered on the page as separate elements (e.g. "Monthly access fee | $ | 30"), so the price_text
+  strings below are the label-and-figure sequence as it appears. NAB publishes no API-usage pricing,
+  and CDR Open Banking access carries no published price (access requires ACCC accreditation).
+  Other NAB search-indexed variants of this page showed 1.40% / $0.25 and 1.50% / $0.30; the live
+  page read on 2026-10-20 shows 1.30% and $0.25.
+plan_count: 2
+plans:
+- name: Simple Pricing
+  description: Simple Pricing may automatically apply Merchant Choice Routing. A single flat rate charged per transaction.
+  price_text: Merchant service fee 1.30 %
+  currency: AUD
+  features:
+  - No NAB set up fees and no fixed term contracts.
+  limits: []
+  fees:
+  - {name: NAB set up fee, price_text: NAB set up fee $ 0, price: 0}
+  - {name: Monthly access fee, price_text: Monthly access fee $ 30, price: 30, billing_period: month}
+  - {name: Merchant service fee, price_text: Merchant service fee 1.30 %, price: 1.30, unit: percent}
+  - {name: Transaction fee, price_text: Transaction fee $ 0.25, price: 0.25, unit: per transaction}
+- name: Negotiated pricing
+  description: Negotiated pricing is available to merchants who meet the relevant criteria available on application.
+  price: Contact sales
+  price_text: Negotiated pricing is available to merchants who meet the relevant criteria available on application.
+  features: []
+  limits: []

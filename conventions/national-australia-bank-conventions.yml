@@ -10,8 +10,34 @@ authentication:
   consumer_data: cdr-security-profile  # OAuth2 (authorization_code + PAR + PKCE) + OIDC + mTLS-bound tokens, accredited data recipients only
   see: authentication/national-australia-bank-authentication.yml
 idempotency:
-  supported: false
-  reason: All operations are safe GET reads; no state-changing endpoints, so no idempotency key is defined.
+  coverage: partial
+  reason: >-
+    CDR Banking surface: all operations are safe GET reads, no idempotency key. NAB Gateway Payments
+    (openapi/_original/national-australia-bank-gateway-payments-swagger.json): 6 of 148 write operations
+    carry an idempotency header -- an optional Idempotency-Key header on the four checkout-session
+    operations and a v-c-idempotency-id header ("defines idempotency of the request") on the two boarding
+    registration writes. The payments/capture/refund/void writes declare no idempotency header.
+  header: Idempotency-Key  # checkout-session operations; boarding registration writes use v-c-idempotency-id
+  headers: [Idempotency-Key, v-c-idempotency-id]
+  scope: [createCheckoutSession, updateCheckoutSession, completeCheckout, cancelCheckout, postRegistration, patchRegistration]
+reversibility:
+  status: documented
+  source: openapi/_original/national-australia-bank-gateway-payments-swagger.json
+  docs: https://nabgateway-developer.nab.com.au/api/reference/response-codes.html
+  note: >-
+    CDR Banking surface is read-only (na). NAB Gateway exposes reversal operations; the NAB pages read
+    state no time windows for them, so no window is asserted.
+  surfaces:
+  - {write: authorization, reversal: authReversal, kind: reverse, window: null}
+  - {write: merchant-initiated authorization, reversal: mitReversal, kind: reverse, window: null}
+  - {write: payment, reversal: refundPayment, kind: refund, window: null}
+  - {write: capture, reversal: refundCapture, kind: refund, window: null}
+  - {write: payment, reversal: voidPayment, kind: void, window: null}
+  - {write: capture, reversal: voidCapture, kind: void, window: null}
+  - {write: refund, reversal: voidRefund, kind: void, window: null}
+  - {write: credit, reversal: voidCredit, kind: void, window: null}
+  - {write: pull funds, reversal: createPullFundsReversal, kind: reverse, window: null}
+  - {write: checkout session, reversal: cancelCheckout, kind: cancel, window: null}
 pagination:
   style: page-number
   request_params: [page, page-size]

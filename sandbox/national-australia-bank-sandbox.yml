@@ -7,6 +7,10 @@ source: https://nabgateway-developer.nab.com.au/hello-world/testing-guide.html
 # flow, not test cards). All values below are published verbatim by NAB; nothing is
 # invented. Test card numbers are shown with NAB's own placeholder notation where "X"
 # represents the digit zero.
+description: >-
+  NAB Gateway (CyberSource-powered merchant-acquiring) sandbox that simulates the live payment
+  gateway and never processes an actual payment; it is completely separate from production and
+  requires separate credentials. Applies to the Gateway Payments API, not the CDR Open Banking surface.
 applies_to: national-australia-bank:national-australia-bank-gateway-payments-api
 separation:
   model: separate-credentials
@@ -17,6 +21,9 @@ separation:
     (or vice versa) returns HTTP 401.
   account: Create a sandbox account via the NAB Developer Portal (contact/registration link)
 docs:
+- https://nabgateway-developer.nab.com.au/hello-world/testing-guide.html
+- https://nabgateway-developer.nab.com.au/docs/nab/en-us/payments/developer/ctv/rest/payments/payments-intro/payments-testing-services/payments-testing-cards.html
+docs_links:
   testing_guide: https://nabgateway-developer.nab.com.au/hello-world/testing-guide.html
   test_cards: https://nabgateway-developer.nab.com.au/docs/nab/en-us/payments/developer/ctv/rest/payments/payments-intro/payments-testing-services/payments-testing-cards.html
 card_notation: >-

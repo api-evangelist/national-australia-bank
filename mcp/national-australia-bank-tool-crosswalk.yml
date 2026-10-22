@@ -1,0 +1,318 @@
+generated: '2026-10-20'
+method: derived
+source:
+- https://developer.visaacceptance.com/docs/vas/en-us/agent-toolkit/quick-start/all/na/agent-toolkit/agent-toolkit-options/agent-toolkit-mcp.md
+- openapi/national-australia-bank-gateway-payments-api-openapi.yml
+purpose: Bind each documented Visa Acceptance MCP tool (the agent surface linked from the NAB Gateway portal) to the NAB Gateway (Cybersource merged) OpenAPI operation it wraps.
+surfaces:
+  rest_openapi: openapi/national-australia-bank-gateway-payments-api-openapi.yml
+  graphql: null
+  mcp: 'local-stdio: npx -y @visaacceptance/mcp (third-party, Visa Acceptance; not NAB-published)'
+  cdr_openapi: openapi/ (CDS Banking files) - no MCP tool backs any CDR operation
+crosswalk:
+- tool: invoices.create
+  category: invoicing
+  rest:
+  - createInvoice
+  binding: rest
+  confidence: high
+  note: mapped by documented tool name/API Service to operation summary; live tool schema not inspected
+- tool: invoices.update
+  category: invoicing
+  rest:
+  - updateInvoice
+  binding: rest
+  confidence: high
+  note: mapped by documented tool name/API Service to operation summary; live tool schema not inspected
+- tool: invoices.list
+  category: invoicing
+  rest:
+  - getAllInvoices
+  binding: rest
+  confidence: high
+  note: mapped by documented tool name/API Service to operation summary; live tool schema not inspected
+- tool: invoices.get
+  category: invoicing
+  rest:
+  - getInvoice
+  binding: rest
+  confidence: high
+  note: mapped by documented tool name/API Service to operation summary; live tool schema not inspected
+- tool: invoices.send
+  category: invoicing
+  rest:
+  - performSendAction
+  binding: rest
+  confidence: medium
+  note: mapped by documented tool name/API Service to operation summary; live tool schema not inspected
+- tool: invoices.cancel
+  category: invoicing
+  rest:
+  - performCancelAction
+  binding: rest
+  confidence: medium
+  note: mapped by documented tool name/API Service to operation summary; live tool schema not inspected
+- tool: paymentLinks.create
+  category: pay-by-link
+  rest:
+  - createPaymentLink
+  binding: rest
+  confidence: high
+  note: mapped by documented tool name/API Service to operation summary; live tool schema not inspected
+- tool: paymentLinks.update
+  category: pay-by-link
+  rest:
+  - updatePaymentLink
+  binding: rest
+  confidence: high
+  note: mapped by documented tool name/API Service to operation summary; live tool schema not inspected
+- tool: paymentLinks.list
+  category: pay-by-link
+  rest:
+  - getAllPaymentLinks
+  binding: rest
+  confidence: high
+  note: mapped by documented tool name/API Service to operation summary; live tool schema not inspected
+- tool: paymentLinks.get
+  category: pay-by-link
+  rest:
+  - getPaymentLink
+  binding: rest
+  confidence: high
+  note: mapped by documented tool name/API Service to operation summary; live tool schema not inspected
+mcp_only: []
+rest_only:
+- actionDecisionManagerCase
+- activateAgentKey
+- activateMerchantKey
+- activatePlan
+- activateSubscription
+- addAgentKey
+- addCustomization
+- addMerchantKey
+- addNegative
+- authReversal
+- bankAccountValidationRequest
+- billingAgreementsDeRegistration
+- billingAgreementsIntimation
+- billingAgreementsRegistration
+- calculateTax
+- cancelCheckout
+- cancelPurchaseIntent
+- cancelSubscription
+- capturePayment
+- checkPayerAuthEnrollment
+- commentDecisionManagerCase
+- completeCheckout
+- confirmTransactionEvents
+- createBundledDecisionManagerCase
+- createCheckoutSession
+- createCredit
+- createDevice
+- createFollowOnSubscription
+- createFxRates
+- createMerchantDefinedFieldDefinition
+- createOrder
+- createOrderRequest
+- createPayment
+- createPblMerchantDefinedFieldDefinition
+- createPlan
+- createPullFundsRefund
+- createPullFundsReversal
+- createPullFundsTransfer
+- createQueryApi
+- createReport
+- createSearch
+- createSessionRequest
+- createStandardOrClassicSubscription
+- createSubscription
+- customization
+- deactivatePlan
+- deleteCustomer
+- deleteCustomerPaymentInstrument
+- deleteCustomerShippingAddress
+- deleteCustomization
+- deleteCustomizationKey
+- deleteInstrumentIdentifier
+- deleteMerchantDefinedFieldsDefinitions
+- deletePaymentInstrument
+- deletePblMerchantDefinedFieldsDefinitions
+- deletePlan
+- deleteSubscription
+- deleteWebhookSubscription
+- downloadReport
+- enrollCard
+- findProductsToSubscribe
+- fraudUpdate
+- generateActivationCodes
+- generateCaptureContext
+- generateUnifiedCheckoutCaptureContext
+- generateUnifiedCheckoutV1CaptureContext
+- getAccountInfo
+- getAgent
+- getAgentKey
+- getAllProducts
+- getAllSubscriptions
+- getBankingAccountDetail
+- getBankingBalance
+- getBankingPayeeDetail
+- getBankingProductDetail
+- getBankingTransactionDetail
+- getBatchReport
+- getBatchStatus
+- getBatchesList
+- getCardArtAsset
+- getCertificateExpirations
+- getChargebackDetails
+- getChargebackSummaries
+- getCheckoutSession
+- getConversionDetail
+- getCustomer
+- getCustomerPaymentInstrument
+- getCustomerPaymentInstrumentsList
+- getCustomerShippingAddress
+- getCustomerShippingAddressesList
+- getDTDV2
+- getFeedJobStatus
+- getFile
+- getFileDetail
+- getFollowOnSubscription
+- getInstrumentIdentifier
+- getInstrumentIdentifierPaymentInstrumentsList
+- getInterchangeClearingLevelDetails
+- getInvoiceSettings
+- getMerchant
+- getMerchantDefinedFieldsDefinitions
+- getMerchantKey
+- getNetFundingDetails
+- getNotificationOfChangeReport
+- getOffer
+- getPaymentBatchSummary
+- getPaymentCredentialsForTransientToken
+- getPaymentInstrument
+- getPblMerchantDefinedFieldsDefinitions
+- getPlan
+- getPlanCode
+- getPlans
+- getProduct
+- getPurchaseAndRefundDetails
+- getRegistration
+- getReportByReportId
+- getResourceInfoByReportDefinition
+- getResourceV2Info
+- getRetrievalDetails
+- getRetrievalSummary
+- getRootCA
+- getSearch
+- getSubscription
+- getSubscriptionCode
+- getTokenizedCard
+- getTransaction
+- getTransactionBatchDetails
+- getTransactionBatchId
+- getTransactionBatches
+- getTransactionForTransientToken
+- getTransactionForTransientTokenJTI
+- getUsers
+- getWebhookSubscriptionById
+- getWebhookSubscriptionsByOrg
+- getXSDV2
+- incrementAuth
+- initiatePurchaseIntent
+- listAgentKeys
+- listBankingAccounts
+- listBankingBalancesBulk
+- listBankingBalancesSpecificAccounts
+- listBankingPayees
+- listBankingProducts
+- listBankingTransactions
+- listDirectDebits
+- listDirectDebitsBulk
+- listDirectDebitsSpecificAccounts
+- listInstalmentPlans
+- listInstalmentPlansBulk
+- listMerchantKeys
+- listScheduledPayments
+- listScheduledPaymentsBulk
+- listScheduledPaymentsSpecificAccounts
+- mitReversal
+- mitVoid
+- octCreatePayment
+- patchCustomer
+- patchCustomersPaymentInstrument
+- patchCustomersShippingAddress
+- patchInstrumentIdentifier
+- patchPaymentInstrument
+- patchRegistration
+- payerAuthSetup
+- performPublishAction
+- postBatch
+- postCustomer
+- postCustomerPaymentInstrument
+- postCustomerShippingAddress
+- postDeAssociateV3Terminal
+- postInstrumentIdentifier
+- postInstrumentIdentifierEnrollment
+- postIssuerLifeCycleSimulation
+- postPaymentInstrument
+- postRegistration
+- postSearchQueryV3
+- postTokenPaymentCredentials
+- postTokenPaymentCredentialsV3
+- postTokenizedCard
+- postTokenizedCardDelete
+- postTransferTerminalAssociation
+- provisionMppCredentials
+- putMerchantDefinedFieldsDefinitions
+- putPblMerchantDefinedFieldsDefinitions
+- refreshPaymentStatus
+- refundCapture
+- refundPayment
+- registerAgent
+- registerMerchant
+- replaceCustomizations
+- retrieveOrDeletePaymentToken
+- retrievePaymentCredentials
+- revokeCertificates
+- saveAsymEgressKey
+- saveSymEgressKey
+- searchReports
+- searchUsers
+- submitProductFeedJson
+- submitVpri
+- subscriptionsIdPaymentsGet
+- subscriptionsIdPaymentsPut
+- suspendSubscription
+- tokenize
+- ucpCancelCheckout
+- ucpCompleteCheckout
+- ucpCreateCheckoutSession
+- ucpGetCheckoutSession
+- ucpUpdateCheckoutSession
+- updateAgent
+- updateAgentKey
+- updateCheckoutSession
+- updateDevice
+- updateInvoiceSettings
+- updateMerchant
+- updateMerchantKey
+- updateOrder
+- updatePlan
+- updatePurchaseIntent
+- updateSessionRequest
+- updateSubscription
+- validateAuthenticationResults
+- validateExportCompliance
+- verifyCustomerAddress
+- voidCapture
+- voidCredit
+- voidPayment
+- voidRefund
+- voidTax
+coverage:
+  mcp_tools_named: 10
+  mcp_bound_to_rest: 10
+  mcp_only: 0
+  rest_operations_with_mcp_tool: 10
+  rest_operations_total: 237
+  rest_only: 227

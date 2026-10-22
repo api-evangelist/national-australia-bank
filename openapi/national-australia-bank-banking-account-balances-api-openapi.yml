@@ -1,4 +1,5 @@
 openapi: 3.2.0
+x-ownership: "Consumer Data Standards (DSB) Banking API that NAB implements as a mandated CDR data holder; the CDR Register (api.cdr.gov.au brands summary, 2026-10-20) lists brand NATIONAL AUSTRALIA BANK (ABN 12004044937) with publicBaseUri https://openbank.api.nab.com.au, and GET https://openbank.api.nab.com.au/cds-au/v1/banking/products (x-v 4) returned 200 in CDS shape. servers[] keeps the standard's templated mtls.dh.example.com host; NAB's authenticated resource base is not publicly documented."
 info:
   contact:
     email: contact@dsb.gov.au

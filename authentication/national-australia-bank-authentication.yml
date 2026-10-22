@@ -40,4 +40,27 @@ surfaces:
       id_token_signing_alg: [PS256]
       request_object_signing_alg: [ES256, PS256]
     scopes_ref: scopes/national-australia-bank-scopes.yml
-schemes: []  # none declared in the OpenAPI; profile above sourced from live OIDC discovery
+# schemes: none declared in the OpenAPI components; the entries below restate the surfaces
+# and the OIDC discovery profile recorded above (no new values).
+schemes:
+- name: public-prd
+  type: none
+  surface: Product Reference Data (public)
+  operations: [listBankingProducts, getBankingProductDetail]
+- name: cdr-oauth2
+  type: oauth2
+  surface: Consumer data sharing (accredited)
+  flows: [authorizationCode, clientCredentials, refreshToken]
+  authorization_url: https://openbank.api.nab.com.au/v1/idp/cdr/nab/authorise
+  token_url: https://openbank-secure.api.nab.com.au/v1/idp/cdr/nab/token
+  pkce: S256
+  par_required: true
+  client_auth: private_key_jwt
+- name: cdr-oidc
+  type: openIdConnect
+  surface: Consumer data sharing (accredited)
+  openIdConnectUrl: https://openbank.api.nab.com.au/.well-known/openid-configuration
+- name: cdr-mtls
+  type: mutualTLS
+  surface: Consumer data sharing (accredited)
+  note: mTLS certificate-bound access tokens (mtls_certificate_bound_access_tokens true)

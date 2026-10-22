@@ -1,0 +1,24 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for NAB CDR banking-products API
+  version: 1.0.0
+extends: openapi/national-australia-bank-banking-products-api-openapi.yml
+generated: '2026-10-20'
+method: generated
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: National Australia Bank
+    x-apievangelist-regime: Australia Consumer Data Right (CDR) - DSB Consumer Data Standards Banking API
+    x-apievangelist-access: public, unauthenticated Product Reference Data
+- target: $.servers
+  update:
+    x-apievangelist-note: DSB spec ships example.com placeholders; NAB live public PRD base (CDR Register publicBaseUri + /cds-au/v1, GET /banking/products returned 200 on 2026-10-20) is https://openbank.api.nab.com.au/cds-au/v1
+- target: $.paths['/banking/products'].get
+  update:
+    x-apievangelist-public: true
+    x-apievangelist-read-only: true
+- target: $.paths['/banking/products/{productId}'].get
+  update:
+    x-apievangelist-public: true
+    x-apievangelist-read-only: true
