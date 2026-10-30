@@ -1,4 +1,4 @@
-# National Australia Bank (national-australia-bank)
+# National Australia Bank
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,59 +64,149 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-National Australia Bank (NAB) is one of Australia's "Big Four" banks and a major Authorised Deposit-taking Institution (ADI), headquartered in Melbourne and publicly listed on the Australian Securities Exchange (ASX:NAB) - a shareholder-owned institution rather than a customer-owned mutual. As a regulated ADI, NAB is a mandated data holder under Australia's Consumer Data Right (CDR / Open Banking) and exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the DSB Consumer Data Standards (CDS).
+National Australia Bank (NAB) is one of Australia's "Big Four" banks and a major Authorised Deposit-taking Institution (ADI), headquartered in Melbourne and publicly listed on the Australian Securities Exchange (ASX:NAB) - a shareholder-owned institution rather than a customer-owned mutual. NAB serves retail, business, corporate, and institutional customers across Australia and New Zealand. As a regulated ADI, NAB is a mandated data holder under Australia's Consumer Data Right (CDR / Open Banking) and exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the DSB Consumer Data Standards (CDS), alongside its accredited-only consumer data sharing surface and a public developer portal.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/national-australia-bank/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/national-australia-bank/refs/heads/main/apis.yml)
+**Areas:** Finance · Banks · Open Banking · CDR · Consumer Banking · Australia · Product Reference Data · ADI
 
-## Tags
+## National Australia Bank on APIs.io
 
-- Financial
-- Banks
-- Open Banking
-- CDR
-- Consumer Banking
-- Australia
-- Product Reference Data
-- ADI
+Everything profiled for National Australia Bank is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/national-australia-bank/](https://apis.io/providers/national-australia-bank/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (8)
 
-- **Created:** 2026-07-20
-- **Modified:** 2026-07-20
+- [National Australia Bank (NAB) Gateway Payments API](https://apis.io/apis/national-australia-bank/national-australia-bank-gateway-payments-api/) — NAB's first-party merchant payments REST API platform (the NAB Gateway / NAB Transact developer portal at nabgateway-developer.nab.com.au), distinct from…
+- [National Australia Bank Banking Account Balances API](https://apis.io/apis/national-australia-bank/national-australia-bank-banking-account-balances-api/) — Banking Account Balance endpoints
+- [National Australia Bank Banking Account Direct Debits API](https://apis.io/apis/national-australia-bank/national-australia-bank-banking-account-direct-debits-api/) — Banking Account Direct Debit endpoints
+- [National Australia Bank Banking Account Scheduled Payments API](https://apis.io/apis/national-australia-bank/national-australia-bank-banking-account-scheduled-payments-api/) — Banking Account Scheduled Payment endpoints
+- [National Australia Bank Banking Account Transactions API](https://apis.io/apis/national-australia-bank/national-australia-bank-banking-account-transactions-api/) — Banking Account Transaction endpoints
+- [National Australia Bank Banking Accounts API](https://apis.io/apis/national-australia-bank/national-australia-bank-banking-accounts-api/) — Banking Account endpoints
+- [National Australia Bank Banking Payees API](https://apis.io/apis/national-australia-bank/national-australia-bank-banking-payees-api/) — Banking Payee endpoints
+- [National Australia Bank Banking Products API](https://apis.io/apis/national-australia-bank/national-australia-bank-banking-products-api/) — Banking Product endpoints
 
-## APIs
+### Published properties
 
-### National Australia Bank (NAB) CDR Product Reference Data API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-NAB's public, unauthenticated Consumer Data Right (CDR) Product Reference Data API. `GET /banking/products` (and `/banking/products/{productId}`) returns NAB's openly published banking product catalogue - home loans, deposits, credit cards, business products and more - with fees, rates, eligibility and terms. Conforms to the DSB Consumer Data Standards (CDS) Banking API. Confirmed live returning HTTP 200 with an `x-v` response header and a `data.products` array (46 products, 10 pages).
+#### MCP servers (1)
 
-- **Human URL:** [https://developer.nab.com.au/docs/open-banking](https://developer.nab.com.au/docs/open-banking)
-- **Base URL:** `https://openbank.api.nab.com.au/cds-au/v1`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [national-australia-bank](https://apis.io/servers/national-australia-bank/national-australia-bank/)
 
-- CDR
-- Open Banking
-- Product Reference Data
-- Banking
-- Consumer Data Right
+#### Collections (7)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://developer.nab.com.au/docs/open-banking)
-- [API Reference](https://consumerdatastandardsaustralia.github.io/standards/#get-products)
-- [OpenAPI](openapi/national-australia-bank-cds-banking-products-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [CDR Banking Banking Account Balances API](https://apis.io/collections/national-australia-bank/open-national-australia-bank-banking-account-balances-api/)
+- [CDR Banking Banking Account Balances Banking Account Direct Debits API](https://apis.io/collections/national-australia-bank/open-national-australia-bank-banking-account-direct-debits-api/)
+- [CDR Banking Banking Account Balances Banking Account Scheduled Payments API](https://apis.io/collections/national-australia-bank/open-national-australia-bank-banking-account-scheduled-payments-api/)
+- [CDR Banking Banking Account Balances Banking Account Transactions API](https://apis.io/collections/national-australia-bank/open-national-australia-bank-banking-account-transactions-api/)
+- [CDR Banking Banking Account Balances Banking Accounts API](https://apis.io/collections/national-australia-bank/open-national-australia-bank-banking-accounts-api/)
+- [CDR Banking Banking Account Balances Banking Payees API](https://apis.io/collections/national-australia-bank/open-national-australia-bank-banking-payees-api/)
+- [CDR Banking Banking Account Balances Banking Products API](https://apis.io/collections/national-australia-bank/open-national-australia-bank-banking-products-api/)
 
-## Common Properties
+#### Overlays (8)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [National Australia Bank Banking Account Balances Overlay](https://apis.io/overlays/national-australia-bank/national-australia-bank-banking-account-balances-overlay/)
+- [National Australia Bank Banking Account Direct Debits Overlay](https://apis.io/overlays/national-australia-bank/national-australia-bank-banking-account-direct-debits-overlay/)
+- [National Australia Bank Banking Account Scheduled Payments Overlay](https://apis.io/overlays/national-australia-bank/national-australia-bank-banking-account-scheduled-payments-overlay/)
+- [National Australia Bank Banking Account Transactions Overlay](https://apis.io/overlays/national-australia-bank/national-australia-bank-banking-account-transactions-overlay/)
+- [National Australia Bank Banking Accounts Overlay](https://apis.io/overlays/national-australia-bank/national-australia-bank-banking-accounts-overlay/)
+- [National Australia Bank Banking Payees Overlay](https://apis.io/overlays/national-australia-bank/national-australia-bank-banking-payees-overlay/)
+- [National Australia Bank Banking Products Overlay](https://apis.io/overlays/national-australia-bank/national-australia-bank-banking-products-overlay/)
+- [National Australia Bank Gateway Payments Overlay](https://apis.io/overlays/national-australia-bank/national-australia-bank-gateway-payments-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [National Australia Bank Authentication](https://apis.io/security/national-australia-bank/national-australia-bank-authentication/)
+- [National Australia Bank Domain Security](https://apis.io/security/national-australia-bank/national-australia-bank-domain-security/)
+- [National Australia Bank Vulnerability Disclosure](https://apis.io/security/national-australia-bank/national-australia-bank-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [National Australia Bank Scopes](https://apis.io/scopes/national-australia-bank/national-australia-bank-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [National Australia Bank Plans Pricing](https://apis.io/plans/national-australia-bank/national-australia-bank-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [National Australia Bank Rate Limits](https://apis.io/rate-limits/national-australia-bank/national-australia-bank-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.nab.com.au/)
-- [Developer Portal](https://developer.nab.com.au/)
-- [Documentation](https://developer.nab.com.au/docs/open-banking)
-- [LinkedIn](https://www.linkedin.com/company/national-australia-bank)
-- [Blog](https://news.nab.com.au/)
-- [Privacy Policy](https://www.nab.com.au/common/privacy-policy)
+- [Documentation](https://nabgateway-developer.nab.com.au/api/developer-guides.html)
+- [Getting started](https://nabgateway-developer.nab.com.au/hello-world.html)
+- [API reference](https://nabgateway-developer.nab.com.au/api-reference-assets/index.html)
+- [Support](https://nabgateway-developer.nab.com.au/support/contact-us.html)
+- [Blog](https://www.nab.com.au/news)
+- [Security](https://www.nab.com.au/about-us/security)
+- [Terms of service](https://www.nab.com.au/content/dam/nabrwd/documents/terms-and-conditions/services/nab-use-of-apis-developer-terms.pdf)
+- [Privacy policy](https://www.nab.com.au/common/privacy-policy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 40.2** — developing · rubric 0.24.0 · scored 2026-10-20
+
+| Facet | Score |
+|---|---|
+| Discoverability | 67.9 |
+| Contract quality | 44.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 53.2 |
+
+**Agent readiness 38.0** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | derived (partial credit) |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 42.5** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/national-australia-bank/](https://apis.io/providers/national-australia-bank/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for National Australia Bank: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/national-australia-bank/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
